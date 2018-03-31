@@ -1,0 +1,18 @@
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [backgroundColor]="backgroundColor">
+
+  <agm-marker *ngFor="let parking of parkings"
+              [latitude]="parking.latitude"
+              [longitude]="parking.longitude"
+              [iconUrl]="'./assets/img/icon2.png'"
+  >
+      <agm-info-window>
+        <h3>{{parking.name}}</h3>
+        <p>{{ parking.schedule }} </p>
+      </agm-info-window>
+  </agm-marker>
+
+</agm-map>
