@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 // import './rxjs.operators';
-
 
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
@@ -12,17 +13,28 @@ import { MapComponent } from './components/map/map.component';
 import { ParkingsService } from './shared/services/parkings.service';
 
 import {HttpModule} from '@angular/http';
+import {routes} from './app.routes';
+import {RouterModule} from '@angular/router';
+import { NavComponent } from './components/misc/nav/nav.component';
+import { LoginComponent } from './components/misc/login/login.component';
+import { SignupComponent } from './components/misc/signup/signup.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    NavComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
+    RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.googlemapsapi
     })
