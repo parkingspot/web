@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
 import { MapComponent } from './components/map/map.component';
-import { ParkingsService } from './shared/services/parkings.service';
+
 
 import {HttpModule} from '@angular/http';
 import {routes} from './app.routes';
@@ -18,6 +18,12 @@ import {RouterModule} from '@angular/router';
 import { NavComponent } from './components/misc/nav/nav.component';
 import { LoginComponent } from './components/misc/login/login.component';
 import { SignupComponent } from './components/misc/signup/signup.component';
+
+// services
+import { UsersService } from './shared/services/users.service'
+import { ParkingsService } from './shared/services/parkings.service';
+
+
 
 
 
@@ -40,7 +46,8 @@ import { SignupComponent } from './components/misc/signup/signup.component';
     })
   ],
   providers: [
-    ParkingsService
+    ParkingsService,
+    UsersService,
   ],
   bootstrap: [AppComponent]
 })
