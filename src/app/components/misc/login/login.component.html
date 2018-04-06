@@ -1,6 +1,6 @@
 <h1>Login</h1>
 <br>
-<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+<form #loginForm="ngForm" (ngSubmit)="onSubmitLogin()">
 
   <div class="form-group" [class.has-error]="email.errors && email.touched">
     <label for="email">Email</label>

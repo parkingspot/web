@@ -1,5 +1,8 @@
+import { SessionService } from './../../../shared/services/session.service';
+import { print } from 'util';
+import { User } from './../../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../shared/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +11,23 @@ import { User } from '../../../shared/models/user.model';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
-  constructor() { }
+  apiError: string;
 
-  ngOnInit() {
+  constructor(
+    private sessionService: SessionService,
+    private router: Router
+  ) {}
+
+  ngOnInit() { }
+
+  onSubmitLogin(loginForm) {
+    this.sessionService.authenticate(this.user).subscribe(
+      (user) => {
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.apiError = error.message;
+      }
+    );
   }
-
 }

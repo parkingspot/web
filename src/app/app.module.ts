@@ -21,6 +21,7 @@ import { SignupComponent } from './components/misc/signup/signup.component';
 
 // services
 import { UsersService } from './shared/services/users.service'
+import { SessionService } from './shared/services/session.service';
 import { ParkingsService } from './shared/services/parkings.service';
 
 
@@ -48,6 +49,7 @@ import { ParkingsService } from './shared/services/parkings.service';
   providers: [
     ParkingsService,
     UsersService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })
