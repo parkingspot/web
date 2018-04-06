@@ -4,10 +4,12 @@ import { LoginComponent } from './components/misc/login/login.component';
 
 // Components
 import { MapComponent } from './components/parking/map/map.component';
+import {ParkingCreateComponent} from './components/parking/parking-create/parking-create.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parkings', pathMatch: 'full'},
   { path: 'parkings', component: MapComponent },
+  { path: 'parkings/create', component: ParkingCreateComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 ];

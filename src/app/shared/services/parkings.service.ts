@@ -19,6 +19,12 @@ export class ParkingsService extends BaseApiService {
       .catch(error => this.handleError(error));
   }
 
+  public create(parking: Parking): Observable<Parking> {
+    return this.http.post(ParkingsService.PARKING_API, parking.asFormData(), new RequestOptions({ withCredentials: true }))
+      .map((res: Response) => res.json())
+      .catch(error => this.handleError(error));
+  }
+
   /*
   get(id: string): Observable<Phone> {
     return this.http.get(`${PhonesService.PHONES_API}/${id}`, BaseApiService.defaultOptions)
