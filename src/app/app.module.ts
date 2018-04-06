@@ -23,6 +23,7 @@ import { SignupComponent } from './components/misc/signup/signup.component';
 import { UsersService } from './shared/services/users.service'
 import { SessionService } from './shared/services/session.service';
 import { ParkingsService } from './shared/services/parkings.service';
+import { ParkingMapComponent } from './components/parking/parking-map/parking-map.component';
 
 
 
@@ -34,7 +35,8 @@ import { ParkingsService } from './shared/services/parkings.service';
     MapComponent,
     NavComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ParkingMapComponent
   ],
   imports: [
     NgbModule.forRoot(),
