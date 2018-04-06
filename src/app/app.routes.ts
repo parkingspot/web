@@ -3,10 +3,11 @@ import { SignupComponent } from './components/misc/signup/signup.component';
 import { LoginComponent } from './components/misc/login/login.component';
 
 // Components
-import { MapComponent } from './components/map/map.component';
+import { MapComponent } from './components/parking/map/map.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parkings', pathMatch: 'full'},
+  { path: 'parkings', component: MapComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 ];

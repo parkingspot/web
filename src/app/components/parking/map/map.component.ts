@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import { ParkingsService } from './../../shared/services/parkings.service';
-import { Parking } from './../../shared/models/parking.model';
+import { ParkingsService } from '../../../shared/services/parkings.service';
+import { Parking } from '../../../shared/models/parking.model';
 
 @Component({
   selector: 'app-map',

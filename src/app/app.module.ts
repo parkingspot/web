@@ -9,7 +9,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
-import { MapComponent } from './components/map/map.component';
+import { MapComponent } from './components/parking/map/map.component';
 
 
 import {HttpModule} from '@angular/http';
@@ -19,11 +19,12 @@ import { NavComponent } from './components/misc/nav/nav.component';
 import { LoginComponent } from './components/misc/login/login.component';
 import { SignupComponent } from './components/misc/signup/signup.component';
 
+
 // services
-import { UsersService } from './shared/services/users.service'
+import { UsersService } from './shared/services/users.service';
 import { SessionService } from './shared/services/session.service';
 import { ParkingsService } from './shared/services/parkings.service';
-import { ParkingMapComponent } from './components/parking/parking-map/parking-map.component';
+
 
 
 
@@ -35,8 +36,7 @@ import { ParkingMapComponent } from './components/parking/parking-map/parking-ma
     MapComponent,
     NavComponent,
     LoginComponent,
-    SignupComponent,
-    ParkingMapComponent
+    SignupComponent
   ],
   imports: [
     NgbModule.forRoot(),
