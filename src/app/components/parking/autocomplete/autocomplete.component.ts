@@ -1,6 +1,6 @@
 import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 

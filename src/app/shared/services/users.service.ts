@@ -17,5 +17,4 @@ export class UsersService extends BaseApiService {
       .map(res => res.json())
       .catch(error => this.handleError(error));
   }
-
 }

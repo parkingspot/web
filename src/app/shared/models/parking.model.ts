@@ -1,11 +1,8 @@
 export class Parking {
-    name: String;
-    address: String;
-    locality: String;
-    postalCode: String;
-    totalParkingSpots?: Number;
-    availableParkingSpots?: Number;
-    schedule: String;
-    longitude: Number;
-    latitude: Number;
+    name: string;
+    address: string;
+    totalParkingSpots?: number;
+    availableParkingSpots?: number;
+    schedule: string;
+    location: Array<number>;
 }

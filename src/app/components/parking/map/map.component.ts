@@ -1,3 +1,4 @@
+// import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild } from '@angular/core';
 import {Component, OnChanges, OnInit} from '@angular/core';
 import { ParkingsService } from '../../../shared/services/parkings.service';
 import { Parking } from '../../../shared/models/parking.model';
