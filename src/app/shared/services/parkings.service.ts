@@ -4,6 +4,7 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+// import {create} from 'domain';
 
 @Injectable()
 export class ParkingsService extends BaseApiService {
@@ -20,7 +21,8 @@ export class ParkingsService extends BaseApiService {
   }
 
   public create(parking: Parking): Observable<Parking> {
-    return this.http.post(ParkingsService.PARKING_API, parking.asFormData(), new RequestOptions({ withCredentials: true }))
+    console.log('hello baby', parking)
+    return this.http.post(ParkingsService.PARKING_API, JSON.stringify(parking), BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));
   }

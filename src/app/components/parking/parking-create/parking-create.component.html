@@ -1,5 +1,5 @@
 <h1>Submit Parking</h1>
-<br>
+
 <form #parkingForm="ngForm" (ngSubmit)="onSubmitParking()">
 
   <div class="form-group" >
@@ -24,5 +24,95 @@
            #password="ngModel"
            [(ngModel)]="parking.address" required>
   </div>
+
+  <div class="form-group" >
+    <label for="locality">Locality</label>
+    <input type="text"
+           class="form-control"
+           id="locality"
+           name="locality"
+           placeholder="Enter locality name"
+           #name="ngModel"
+           [(ngModel)]="parking.locality" required>
+    <!-- <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span> -->
+  </div>
+
+  <div class="form-group" >
+    <label for="postalCode">Postal Code</label>
+    <input type="text"
+           class="form-control"
+           id="postalCode"
+           name="postalCode"
+           placeholder="Enter Postal Code"
+           #name="ngModel"
+           [(ngModel)]="parking.postalCode" required>
+    <!-- <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span> -->
+  </div>
+
+  <div class="form-group" >
+    <label for="totalParkingSpots">Total Parking Spots</label>
+    <input type="number"
+           class="form-control"
+           id="totalParkingSpots"
+           name="totalParkingSpots"
+           placeholder="Enter Total Parking Spots"
+           #name="ngModel"
+           [(ngModel)]="parking.totalParkingSpots" required>
+    <!-- <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span> -->
+  </div>
+
+  <div class="form-group" >
+  <label for="schedule">Schedule</label>
+  <input type="text"
+         class="form-control"
+         id="schedule"
+         name="schedule"
+         placeholder="Enter Schedule"
+         #name="ngModel"
+         [(ngModel)]="parking.schedule" required>
+  <!-- <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span> -->
+</div>
+
+  <div class="form-group" >
+    <label for="longitude">Longitude</label>
+    <input type="number"
+           class="longitude"
+           id="longitude"
+           name="longitude"
+           placeholder="Enter Longitude"
+           #name="ngModel"
+           [(ngModel)]="parking.longitude" required>
+    <!-- <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span> -->
+  </div>
+
+  <div class="form-group" >
+    <label for="latitude">Latitude</label>
+    <input type="number"
+           class="latitude"
+           id="latitude"
+           name="latitude"
+           placeholder="Enter Latitude"
+           #name="ngModel"
+           [(ngModel)]="parking.latitude" required>
+    <!-- <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span> -->
+  </div>
+
+
   <button class="btn btn-success">Create Parking</button>
 </form>
+
+
+<!--
+
+name: String;
+    address: String;
+    locality: String;
+    postalCode: String;
+    totalParkingSpots?: Number;
+    availableParkingSpots?: Number;
+    schedule: String;
+    longitude: Number;
+    latitude: Number;
+
+
+-->

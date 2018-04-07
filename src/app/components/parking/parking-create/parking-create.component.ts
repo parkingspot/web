@@ -17,24 +17,22 @@ export class ParkingCreateComponent implements OnInit {
 
   constructor(
     private router: Router,
-    /* private parkingsService: ParkingsService */) {
+    private parkingsService: ParkingsService) {
   }
 
   ngOnInit() { }
 
   onSubmitParking(parkingForm: NgForm) {
-    console.log(this.parking);
-    /*
+  console.log(this.parking);
     this.parkingsService.create(this.parking)
       .subscribe(
         (parking) => {
-          parkingForm.reset();
-          this.router.navigate(['/phones']);
+          this.parking = new Parking();
+          this.router.navigate(['/parkings']);
         },
         (error) => {
           this.apiError = error;
         }
       );
-      */
   }
 }
