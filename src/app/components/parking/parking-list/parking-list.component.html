@@ -10,22 +10,64 @@
         <table class="table">
           <tbody>
             <tr>
-             
               <th>Address</th>
               <td>
-                
-
-
                 <input type="text"
                          class="form-control"
                          name="address"
                          #address="ngModel"
                          [value]="parking.address"
                          [(ngModel)]="parking.address" required>
-              
-              
               </td>
-             </tr>
+            </tr>
+
+            <!-- <tr>
+                <th>Longitude</th>
+                <td>
+                  <input type="number"
+                           class="form-control"
+                           name="longitude"
+                           #parking.location[0]="ngModel"
+                           [value]="parking.location[0]"
+                           [(ngModel)]="parking.location[0]" required>
+                </td>
+              </tr>
+              <tr>
+                  <th>Latitude</th>
+                  <td>
+                    <input type="number"
+                             class="form-control"
+                             name="latitude"
+                             #parking.location[1]="ngModel"
+                             [value]="parking.location[1]"
+                             [(ngModel)]="parking.location[1]" required>
+                  </td>
+                </tr> -->
+                <tr> 
+                    <th>Spots</th>
+                    <td>
+                      <input type="text"
+                               class="form-control"
+                               name="totalParkingSpots"
+                               #totalParkingSpots="ngModel"
+                               [value]="parking.totalParkingSpots"
+                               [(ngModel)]="parking.totalParkingSpots" required>
+                    </td>
+                  </tr>
+                  <tr>
+                      <th>Schedule</th>
+                      <td>
+                        <input type="text"
+                                 class="form-control"
+                                 name="schedule"
+                                 #schedule="ngModel"
+                                 [value]="parking.schedule"
+                                 [(ngModel)]="parking.schedule" required>
+                      </td>
+                    </tr>
+  
+
+
              <!--
             <tr>
               <th>Longitude</th>

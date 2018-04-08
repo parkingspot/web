@@ -21,6 +21,8 @@ export class ParkingListComponent implements OnInit {
   parking: Parking;
   apiError: string;
   idEnviado: number;
+  longitude: number;
+  latitude: number;
 
   constructor(
     private parkingService: ParkingsService,
@@ -40,7 +42,12 @@ export class ParkingListComponent implements OnInit {
 
     // console.log(pos);
 
-    this.parking = this.parkings[0];
+    // this.parking = this.parkings[0];
+    const newParking = {
+      ...this.parkings[0],
+      location: new Array(this.longitude, this.latitude)
+      // address: this.address
+    };
     // console.log($event.path[0][5].value);
 
   
