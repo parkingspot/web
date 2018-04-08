@@ -41,13 +41,14 @@ export class ParkingCreateComponent implements OnInit {
   ngOnInit() {
     // set google maps defaults
     this.zoom = 18;
-    this.location = [-3.7004000, 40.4146500];
+    this.location = [-3.69743, 40.392303];
 
     // create search FormControl
     this.searchControl = new FormControl();
 
     // set current position
-    this.setCurrentPosition();
+    setTimeout(() => this.setCurrentPosition(), 3000);
+    // this.setCurrentPosition();
 
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -74,8 +75,8 @@ export class ParkingCreateComponent implements OnInit {
     });
   }
 
-  private setCurrentPosition(){
-    if('geolocation' in navigator){
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
           this.location[0] = position.coords.longitude;
           this.location[1] = position.coords.latitude;
