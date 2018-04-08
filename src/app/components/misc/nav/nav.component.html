@@ -7,10 +7,10 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a [routerLink]="['/signup']" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
             <li><a [routerLink]="['/login']" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="#" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a (click)="onclickLogout()" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
           <div class="dropdown navbar-left">
-              <button class="dropbtn">Options</button>
+              <button class="dropbtn bg-primary">Options</button>
               <div class="dropdown-content">
                 <a [routerLink]="['/parkings/create']"><strong>Create Parking</strong></a>               
               </div>

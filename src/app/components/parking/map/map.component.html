@@ -5,13 +5,15 @@
   [backgroundColor]="backgroundColor">
 
   <agm-marker *ngFor="let parking of parkings"
-              [latitude]="parking.latitude"
-              [longitude]="parking.longitude"
+              [latitude]="parking.location[1]"
+              [longitude]="parking.location[0]"
               [iconUrl]="'./assets/img/icon2.png'"
   >
       <agm-info-window>
         <h3>{{parking.name}}</h3>
         <p> {{parking.schedule }} </p>
+        <p> {{parking.address }} </p>
+
       </agm-info-window>
   </agm-marker>
 
