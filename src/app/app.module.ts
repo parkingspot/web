@@ -26,6 +26,7 @@ import { AutocompleteComponent } from './components/parking/autocomplete/autocom
 
 // Google Maps
 import { ReactiveFormsModule } from '@angular/forms';
+import { ParkingListComponent } from './components/parking/parking-list/parking-list.component';
 
 
 
@@ -38,7 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     ParkingCreateComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ParkingListComponent
   ],
   imports: [
     NgbModule.forRoot(),

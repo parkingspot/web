@@ -1,0 +1,60 @@
+<div class="container">
+  <h2>Panel Group</h2>
+  <p>The panel-group class clears the bottom-margin. Try to remove the class and see what happens.</p>
+  <div *ngFor="let parking of parkings; let i = index">
+    <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value, i)">
+      <div class="panel-group form-group">
+        <div class="panel panel-default">
+          <div class="panel-heading"> {{parking.name}}</div>
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>Address</th>
+                  <td>
+                    <input type="text" class="form-control" name="address" #address="ngModel" [value]="parking.address" [(ngModel)]="parking.address"
+                      required>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Longitude</th>
+                  <td>
+                    <input type="number" class="form-control" name="longitude" #parking.longitude="ngModel" [value]="parking.location[0]" [(ngModel)]="parking.location[0]"
+                      required>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Latitude</th>
+                  <td>
+                    <input type="number" class="form-control" name="latitude" #parking.latitude="ngModel" [value]="parking.location[1]" [(ngModel)]="parking.location[1]"
+                      required>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Spots</th>
+                  <td>
+                    <input type="text" class="form-control" name="totalParkingSpots" #totalParkingSpots="ngModel" [value]="parking.totalParkingSpots"
+                      [(ngModel)]="parking.totalParkingSpots" required>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Schedule</th>
+                  <td>
+                    <input type="text" class="form-control" name="schedule" #schedule="ngModel" [value]="parking.schedule" [(ngModel)]="parking.schedule"
+                      required>
+                  </td>
+                </tr>
+                <input name="id" type="hidden" #id="ngModel" [value]="parking.id" [(ngModel)]="parking.id">
+
+              </tbody>
+            </table>
+
+            <button class="btn btn-success">Save</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

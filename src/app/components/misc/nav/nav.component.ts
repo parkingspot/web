@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { SessionService } from './../../../shared/services/session.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private SessionService: SessionService
+  ) { }
 
   ngOnInit() {
   }
+
+  onclickLogout() {
+    console.log("ENTRA AL LOGOUT")
+    this.SessionService.logout()
+    .subscribe(() => {
+      console.log("Entra al SUBSCRIBE")
+      this.router.navigate(['/login']);
+    }
+  )};
+
 
 }

@@ -1,15 +1,18 @@
+
 import { Routes } from '@angular/router';
-import { SignupComponent } from './components/misc/signup/signup.component';
-import { LoginComponent } from './components/misc/login/login.component';
 
 // Components
 import { MapComponent } from './components/parking/map/map.component';
-import {ParkingCreateComponent} from './components/parking/parking-create/parking-create.component';
+import { ParkingCreateComponent} from './components/parking/parking-create/parking-create.component';
+import { SignupComponent } from './components/misc/signup/signup.component';
+import { LoginComponent } from './components/misc/login/login.component';
+import { ParkingListComponent } from './components/parking/parking-list/parking-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parkings', pathMatch: 'full'},
   { path: 'parkings', component: MapComponent },
   { path: 'parkings/create', component: ParkingCreateComponent },
+  { path: 'parkings/list', component: ParkingListComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 ];

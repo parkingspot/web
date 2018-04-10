@@ -24,7 +24,6 @@ export class SignupComponent {
         this.router.navigate(['/login']);
       },
       (error) => {
-        console.log(error)
         this.apiError = error.message;
       }
     );

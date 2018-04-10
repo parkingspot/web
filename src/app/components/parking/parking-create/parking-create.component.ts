@@ -69,7 +69,6 @@ export class ParkingCreateComponent implements OnInit {
           this.location[0] = place.geometry.location.lng();
           this.location[1] = place.geometry.location.lat();
           this.address = place.formatted_address;
-          console.log(this.location[0], this.location[1])
         });
       });
     });
