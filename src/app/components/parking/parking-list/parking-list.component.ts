@@ -18,7 +18,7 @@ import { NgForm } from '@angular/forms';
 export class ParkingListComponent implements OnInit {
 
   parkings: Array<Parking> = [];
-  parking: Parking;
+  parking: any;
   apiError: string;
   idEnviado: number;
   longitude: number;
@@ -33,45 +33,34 @@ export class ParkingListComponent implements OnInit {
   ngOnInit() {
     this.parkingService.list()
       .subscribe((parkings) => this.parkings = parkings);
-    
+console.log()
   }
 
 
-  onSubmitEdit($event) {
+  onSubmitEdit(editForm, index) {
     // let pos = this.parkings.map(function(e) { return e.id; }).indexOf($event.path[0][5].value);
-
-    // console.log(pos);
-
-    // this.parking = this.parkings[0];
+    // console.log(editForm)
+    console.log(this.parkings[index])
     const newParking = {
-      ...this.parkings[0],
-      location: new Array(this.longitude, this.latitude)
-      // address: this.address
+      ...this.parkings[index],
+      location: {
+        type: "Point",
+        coordinates: new Array(editForm.longitude, editForm.latitude)
+      },
     };
-    // console.log($event.path[0][5].value);
 
-  
-  
-    // const newParking = {
-      
-      // ...this.parking,
-      // location: new Array(this.location[0], this.location[1]),
-      // address: this.address
-    // };
+    this.parkingService.edit(newParking)
+      .subscribe(
+        (parking) => {
+          console.log('Nuevo parking =>')
+          console.log(parking)
+          this.parkings[index] = parking;
+          this.router.navigate(['/parkings']);
+        },
+        (error) => {
+          this.apiError = error;
+        }
+      );
 
-
-
-    
-      this.parkingService.edit(this.parking)
-        .subscribe(
-          (parking) => {
-            this.parking = new Parking();
-            this.router.navigate(['/parkings']);
-          },
-          (error) => {
-            this.apiError = error;
-          }
-        );
-
-      }
+  }
 }

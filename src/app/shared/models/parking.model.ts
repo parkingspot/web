@@ -5,5 +5,5 @@ export class Parking {
     totalParkingSpots?: number;
     availableParkingSpots?: number;
     schedule?: string;
-    location?: Array<number>;
+    location?: Object;
 }
