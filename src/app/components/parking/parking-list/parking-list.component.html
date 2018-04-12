@@ -55,7 +55,7 @@
             <button class="btn btn-success">Save</button>
           </div>
     </form>
-    <form #editForm="ngForm" (ngSubmit)="onSubmitDelete(editForm.value, i)">
+    <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value, i)">
       <input name="id" type="hidden" #id="ngModel" [value]="parking.id" [(ngModel)]="parking.id">
       <button class="btn btn-danger">Delete</button>
     </form>

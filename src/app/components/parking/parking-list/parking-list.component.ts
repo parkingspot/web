@@ -31,7 +31,7 @@ export class ParkingListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.parkingService.list()
+    this.parkingService.listByUser()
       .subscribe((parkings) => this.parkings = parkings);
 console.log();
   }
@@ -64,7 +64,7 @@ console.log();
 
   }
 
-  onSubmitDelete(editForm, index) {
+  onSubmitDelete(deleteForm, index) {
     // let pos = this.parkings.map(function(e) { return e.id; }).indexOf($event.path[0][5].value);
     // console.log(editForm)
     /*
@@ -78,7 +78,7 @@ console.log();
     };
     */
 
-    this.parkingService.delete(editForm.id)
+    this.parkingService.delete(deleteForm.id)
       .subscribe(
         (parking) => {
           console.log('Parking borrado =>')

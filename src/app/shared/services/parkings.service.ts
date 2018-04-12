@@ -20,6 +20,12 @@ export class ParkingsService extends BaseApiService {
       .catch(error => this.handleError(error));
   }
 
+  listByUser(): Observable<Array<Parking>> {
+    return this.http.get(ParkingsService.PARKING_API + '/user', BaseApiService.defaultOptions)
+      .map((res: Response) => res.json())
+      .catch(error => this.handleError(error));
+  }
+
   public create(parking: Parking): Observable<Parking> {
     console.log('hello baby', parking)
     return this.http.post(ParkingsService.PARKING_API, JSON.stringify(parking), BaseApiService.defaultOptions)
