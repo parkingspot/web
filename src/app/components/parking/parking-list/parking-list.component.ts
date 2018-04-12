@@ -33,7 +33,7 @@ export class ParkingListComponent implements OnInit {
   ngOnInit() {
     this.parkingService.list()
       .subscribe((parkings) => this.parkings = parkings);
-console.log()
+console.log();
   }
 
 
@@ -44,7 +44,7 @@ console.log()
     const newParking = {
       ...this.parkings[index],
       location: {
-        type: "Point",
+        type: 'Point',
         coordinates: new Array(editForm.longitude, editForm.latitude)
       },
     };
@@ -63,4 +63,36 @@ console.log()
       );
 
   }
+
+  onSubmitDelete(editForm, index) {
+    // let pos = this.parkings.map(function(e) { return e.id; }).indexOf($event.path[0][5].value);
+    // console.log(editForm)
+    /*
+    console.log(this.parkings[index])
+    const newParking = {
+      ...this.parkings[index],
+      location: {
+        type: 'Point',
+        coordinates: new Array(editForm.longitude, editForm.latitude)
+      },
+    };
+    */
+
+    this.parkingService.delete(editForm.id)
+      .subscribe(
+        (parking) => {
+          console.log('Parking borrado =>')
+          console.log(parking)
+          // this.parkings[index] = parking;
+          this.router.navigate(['/parkings']);
+        },
+        (error) => {
+          this.apiError = error;
+        }
+      );
+
+  }
+
+
+
 }

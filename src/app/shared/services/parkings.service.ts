@@ -27,10 +27,16 @@ export class ParkingsService extends BaseApiService {
       .catch(error => this.handleError(error));
   }
 
-  edit(parking: Parking): Observable<Parking> {
+  public edit(parking: Parking): Observable<Parking> {
     // return this.http.put(`PhonesService.PHONES_API/${parking.id}`, parking.asFormData(), new RequestOptions({ withCredentials: true }))
-    return this.http.put(`${ParkingsService.PARKING_API}/${parking.id}`, JSON.stringify(parking), BaseApiService.defaultOptions) 
-    .map((res: Response) => res.json())
+    return this.http.put(`${ParkingsService.PARKING_API}/${parking.id}`, JSON.stringify(parking), BaseApiService.defaultOptions)
+      .map((res: Response) => res.json())
+      .catch(error => this.handleError(error));
+  }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete(`${ParkingsService.PARKING_API}/${id}`, BaseApiService.defaultOptions)
+      .map((res: Response) => res.json())
       .catch(error => this.handleError(error));
   }
 
