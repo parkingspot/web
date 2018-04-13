@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { SessionService } from './../../../shared/services/session.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { User } from './../../../shared/models/user.model';
+import { Observable, Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-nav',
@@ -8,23 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  user: User;
+  userSubscription: Subscription;
 
   constructor(
     private router: Router,
-    private SessionService: SessionService
+    private sessionService: SessionService
   ) { }
 
   ngOnInit() {
+    this.user = this.sessionService.getUser();
+    this.userSubscription = this.sessionService.onUserChanges()
+      .subscribe(user => this.user = user);
+    console.log(this.user);
   }
+/*
+    ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
+ */
 
   onclickLogout() {
-    console.log("ENTRA AL LOGOUT")
-    this.SessionService.logout()
+    this.sessionService.logout()
     .subscribe(() => {
-      console.log("Entra al SUBSCRIBE")
       this.router.navigate(['/login']);
     }
-  )};
-
-
+  ); }
 }

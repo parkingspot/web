@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AgmDirectionModule } from 'agm-direction';
 
 // import './rxjs.operators';
 
@@ -52,7 +53,8 @@ import { ParkingListComponent } from './components/parking/parking-list/parking-
     AgmCoreModule.forRoot({
       apiKey: environment.googlemapsapi,
       libraries: ['places']
-    })
+    }),
+    AgmDirectionModule
   ],
   providers: [
     ParkingsService,

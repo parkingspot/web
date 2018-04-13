@@ -10,7 +10,7 @@ import { UsersService } from './../../../shared/services/users.service';
 })
 export class SignupComponent {
   user: User = new User();
-  apiError: string
+  apiError: string;
 
   constructor(
     private router: Router,
@@ -28,5 +28,5 @@ export class SignupComponent {
       }
     );
   }
-  
+
 }

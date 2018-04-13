@@ -4,15 +4,20 @@
   [zoom]="zoom"
   [backgroundColor]="backgroundColor">
 
-  <agm-marker *ngFor="let parking of parkings"
+  <agm-marker *ngFor="let parking of parkings; let i = index"
               [latitude]="parking.location[1]"
               [longitude]="parking.location[0]"
               [iconUrl]="'./assets/img/icon2.png'"
   >
+      <agm-direction *ngIf="dir"
+                     [origin]="dir.origin"
+                     [destination]="dir.destination">
+      </agm-direction>
       <agm-info-window>
         <h3>{{parking.name}}</h3>
         <p> {{parking.schedule }} </p>
         <p> {{parking.address }} </p>
+        <button (click)="getDirection(i)">Mirame y no me toques</button>
 
       </agm-info-window>
   </agm-marker>

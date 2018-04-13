@@ -31,9 +31,17 @@ export class ParkingListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.parkingService.listByUser()
-      .subscribe((parkings) => this.parkings = parkings);
-console.log();
+    if (this.sessionService.getUser() === null) {
+      this.router.navigate(['/login']);
+    } else if (this.sessionService.getUser().role === 'company') {
+      this.parkingService.listByUser()
+        .subscribe((parkings) => this.parkings = parkings);
+    } else if (this.sessionService.getUser().role === 'admin' ) {
+      this.parkingService.list()
+        .subscribe((parkings) => this.parkings = parkings);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
 
