@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Users List</h2>
+  <div *ngFor="let user of users; let i = index">
+    <div class="panel-group form-group">
+      <div class="panel panel-default">
+        <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value, i)">
+          <div class="panel-heading"> {{user.email}}</div>
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+              <tr>
+                <th>Email:</th>
+                <td>
+                  <input type="text" class="form-control" name="email" #address="ngModel" [value]="user.address" [(ngModel)]="user.email"
+                         required>
+                </td>
+              </tr>
+
+              <input name="id" type="hidden" #id="ngModel" [value]="user.id" [(ngModel)]="user.id">
+
+              </tbody>
+            </table>
+
+            <button class="btn btn-success">Save</button>
+          </div>
+        </form>
+        <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value, i)">
+          <input name="id" type="hidden" #id="ngModel" [value]="user.id" [(ngModel)]="user.id">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

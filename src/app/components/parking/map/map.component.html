@@ -11,7 +11,10 @@
   >
       <agm-direction *ngIf="dir"
                      [origin]="dir.origin"
-                     [destination]="dir.destination">
+                     [destination]="dir.destination"
+                     [travelMode]="travelMode"
+                     [avoidHighways]="avoidHighways"
+      >
       </agm-direction>
       <agm-info-window>
         <h3>{{parking.name}}</h3>

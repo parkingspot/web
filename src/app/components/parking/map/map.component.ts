@@ -10,12 +10,14 @@ import { AgmDirectionModule } from 'agm-direction';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  location = undefined;
   dir = undefined;
   lng = -3.697588;
   lat = 40.391662;
   zoom = 14;
   parkings: Array<Parking> = [];
-  backgroundColor: 'red';
+  travelMode: String = 'WALKING';
+  avoidHighways: Boolean = true;
 
   constructor( private parkingService: ParkingsService ) {
   }
@@ -26,23 +28,32 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.location = {
+      type: 'Point', coordinates: [this.lng, this.lat]
+    };
+    /*
     this.parkingService.list()
       .subscribe((parkings) => this.parkings = parkings);
+    */
+    this.parkingService.near(this.location)
+      .subscribe((parkings) => this.parkings = parkings);
+
+
   }
 
   getDirection(i) {
+    console.log('getDirection')
     this.dir = {
       origin: {
-        lat: 40.391662,
-        lng: -3.697588
+        lng: -3.697588,
+        lat: 40.391662
       },
       destination: {
-        lat: this.parkings[i].location[1],
-        lng: this.parkings[i].location[0]
-      },
-      avoidHighways: false,
-      travelMode: 'WALKING'
+        lng: this.parkings[i].location[0],
+        lat: this.parkings[i].location[1]
+      }
     };
+
     console.log(this.parkings[i].location[0])
     console.log(this.parkings[i].location[1]);
   }

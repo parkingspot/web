@@ -7,6 +7,7 @@ import { ParkingCreateComponent} from './components/parking/parking-create/parki
 import { SignupComponent } from './components/misc/signup/signup.component';
 import { LoginComponent } from './components/misc/login/login.component';
 import { ParkingListComponent } from './components/parking/parking-list/parking-list.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parkings', pathMatch: 'full'},
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'parkings/list', component: ParkingListComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'user/list', component: UserListComponent}
 ];
 
 

@@ -5,11 +5,6 @@ import { SessionService } from './../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-// import { print } from 'util';
-// import { User } from './../../../shared/models/user.model';
-
-
-
 @Component({
   selector: 'app-parking-list',
   templateUrl: './parking-list.component.html',
@@ -20,9 +15,6 @@ export class ParkingListComponent implements OnInit {
   parkings: Array<Parking> = [];
   parking: any;
   apiError: string;
-  idEnviado: number;
-  longitude: number;
-  latitude: number;
 
   constructor(
     private parkingService: ParkingsService,
@@ -44,24 +36,18 @@ export class ParkingListComponent implements OnInit {
     }
   }
 
-
   onSubmitEdit(editForm, index) {
-    // let pos = this.parkings.map(function(e) { return e.id; }).indexOf($event.path[0][5].value);
-    // console.log(editForm)
-    console.log(this.parkings[index])
     const newParking = {
       ...this.parkings[index],
       location: {
         type: 'Point',
-        coordinates: new Array(editForm.longitude, editForm.latitude)
-      },
+        coordinates: [editForm.longitude, editForm.latitude]
+      }
     };
 
     this.parkingService.edit(newParking)
       .subscribe(
         (parking) => {
-          console.log('Nuevo parking =>')
-          console.log(parking)
           this.parkings[index] = parking;
           this.router.navigate(['/parkings']);
         },
@@ -69,38 +55,17 @@ export class ParkingListComponent implements OnInit {
           this.apiError = error;
         }
       );
-
   }
 
   onSubmitDelete(deleteForm, index) {
-    // let pos = this.parkings.map(function(e) { return e.id; }).indexOf($event.path[0][5].value);
-    // console.log(editForm)
-    /*
-    console.log(this.parkings[index])
-    const newParking = {
-      ...this.parkings[index],
-      location: {
-        type: 'Point',
-        coordinates: new Array(editForm.longitude, editForm.latitude)
-      },
-    };
-    */
-
     this.parkingService.delete(deleteForm.id)
       .subscribe(
         (parking) => {
-          console.log('Parking borrado =>')
-          console.log(parking)
-          // this.parkings[index] = parking;
           this.router.navigate(['/parkings']);
         },
         (error) => {
           this.apiError = error;
         }
       );
-
   }
-
-
-
 }

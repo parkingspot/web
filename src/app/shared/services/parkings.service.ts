@@ -4,6 +4,7 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import Point = google.maps.Data.Point;
 // import {create} from 'domain';
 
 @Injectable()
@@ -13,34 +14,33 @@ export class ParkingsService extends BaseApiService {
   constructor(private http: Http) {
     super();
   }
-
-  list(): Observable<Array<Parking>> {
+  public list(): Observable<Array<Parking>> {
     return this.http.get(ParkingsService.PARKING_API, BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));
   }
-
-  listByUser(): Observable<Array<Parking>> {
+  public near(location: any): Observable<Array<Parking>> {
+    return this.http.get(`${ParkingsService.PARKING_API}/near/${location.coordinates[0]}/${location.coordinates[1]}`, BaseApiService.defaultOptions)
+      .map((res: Response) => res.json())
+      .catch(error => this.handleError(error));
+  }
+  public listByUser(): Observable<Array<Parking>> {
     return this.http.get(ParkingsService.PARKING_API + '/user', BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));
   }
-
   public create(parking: Parking): Observable<Parking> {
-    console.log('hello baby', parking)
     return this.http.post(ParkingsService.PARKING_API, JSON.stringify(parking), BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));
   }
-
   public edit(parking: Parking): Observable<Parking> {
     // return this.http.put(`PhonesService.PHONES_API/${parking.id}`, parking.asFormData(), new RequestOptions({ withCredentials: true }))
     return this.http.put(`${ParkingsService.PARKING_API}/${parking.id}`, JSON.stringify(parking), BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));
   }
-
-  delete(id: string): Observable<void> {
+  public delete(id: string): Observable<void> {
     return this.http.delete(`${ParkingsService.PARKING_API}/${id}`, BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));

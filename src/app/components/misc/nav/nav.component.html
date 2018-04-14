@@ -10,10 +10,11 @@
             <li *ngIf="user"><a (click)="onclickLogout()" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           </ul>
           <div class="dropdown navbar-left" *ngIf="user">
-              <button class="dropbtn bg-primary" *ngIf="user.role === 'admin' || user.role === 'company'">Options</button>
+              <button class="dropbtn bg-primary">Options</button>
               <div class="dropdown-content">
-                <a [routerLink]="['/parkings/create']"><strong>Create Parking</strong></a>
-                <a [routerLink]="['/parkings/list']"><strong>List/Update Parking</strong></a>
+                <a  [routerLink]="['/parkings/create']" *ngIf="user.role === 'admin' || user.role === 'company'"><strong>Create Parking</strong></a>
+                <a [routerLink]="['/parkings/list']" *ngIf="user.role === 'admin' || user.role === 'company'"><strong>List Parking</strong></a>
+                <a [routerLink]="['/user/list']"><strong>Users List</strong></a>
               </div>
           </div>
         </div>
