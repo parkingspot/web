@@ -1,0 +1,41 @@
+<form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm)">
+    <div class="panel-heading"> {{user.name}}</div>
+    <div class="panel-body">
+      <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>
+                  <input type="text" class="form-control" name="name" #name="ngModel" [value]="user.name" [(ngModel)]="user.name"
+                         required>
+                </td>
+              </tr>
+        <tr>
+          <th>Email</th>
+          <td>
+            <input type="text" class="form-control" name="email" #email="ngModel" [value]="user.email" [(ngModel)]="user.email"
+                   required>
+          </td>
+        </tr>
+
+        <tr>
+          <th>City</th>
+          <td>
+            <p>{{user.city}}</p>
+          </td>
+        </tr>
+        <tr>
+           <th>Role</th>
+          <td>
+            <p>{{user.role}}</p>
+          </td>
+        </tr>
+
+        <input name="id" type="hidden" #id="ngModel" [value]="user.id" [(ngModel)]="user.id">
+
+        </tbody>
+      </table>
+
+      <button class="btn btn-success">Save</button>
+    </div>
+  </form>

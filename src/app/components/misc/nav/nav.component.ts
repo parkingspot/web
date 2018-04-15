@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from './../../../shared/models/user.model';
 import { Observable, Subscription } from 'rxjs/Rx';
 
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -22,7 +23,6 @@ export class NavComponent implements OnInit {
     this.user = this.sessionService.getUser();
     this.userSubscription = this.sessionService.onUserChanges()
       .subscribe(user => this.user = user);
-    console.log(this.user);
   }
 /*
     ngOnDestroy() {

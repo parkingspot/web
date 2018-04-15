@@ -1,6 +1,17 @@
 <h1>Sign Up</h1>
 <br>
 <form #signupForm="ngForm" (ngSubmit)="onSubmitSignup()">
+  <div class="form-group" [class.has-error]="name.errors && name.touched">
+    <label for="name">Name / Company</label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           name="name"
+           placeholder="Enter name / company"
+           #name="ngModel"
+           [(ngModel)]="user.name" required>
+    <span class="text-danger" *ngIf="name.touched && name.errors">Name not valid</span>
+  </div>
 
   <div class="form-group" [class.has-error]="email.errors && email.touched">
     <label for="email">Email</label>
@@ -14,7 +25,7 @@
     <span class="text-danger" *ngIf="email.touched && email.errors">Email not valid</span>
   </div>
 
-  <div class="form-group" [class.has-error]="email.errors && email.touched">
+  <div class="form-group" [class.has-error]="password.errors && password.touched">
     <label for="password">Password</label>
     <input type="password"
            class="form-control"
@@ -35,6 +46,18 @@
             [(ngModel)]="user.role" required>
       <option value="user">Normal User</option>
       <option value="company">Parking Company</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    <select class="form-control"
+            id="city"
+            name="city"
+            #city="ngModel"
+            [(ngModel)]="user.city" required>
+      <option value="madrid">Madrid</option>
+      <option value="barcelona">Barcelona</option>
+      <option value="valencia">Valencia</option>
     </select>
   </div>
 

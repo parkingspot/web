@@ -1,24 +1,25 @@
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Parking<strong>Spot</strong></a>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="!user"><a [routerLink]="['/signup']" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-user" ></span> Sign Up</a></li>
-            <li *ngIf="!user"><a [routerLink]="['/login']" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li *ngIf="user"><a (click)="onclickLogout()" class="btn.btn-default btn-lg"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-          </ul>
-          <div class="dropdown navbar-left" *ngIf="user">
-              <button class="dropbtn bg-primary">Options</button>
-              <div class="dropdown-content">
-                <a  [routerLink]="['/parkings/create']" *ngIf="user.role === 'admin' || user.role === 'company'"><strong>Create Parking</strong></a>
-                <a [routerLink]="['/parkings/list']" *ngIf="user.role === 'admin' || user.role === 'company'"><strong>List Parking</strong></a>
-                <a [routerLink]="['/user/list']"><strong>Users List</strong></a>
-              </div>
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="bg-primary p-4">
+            <!-- <h4 class="text-white">Main Menu</h4> -->
+            <div class="dropdown navbar-left" *ngIf="user">
+                <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings']"><i class="fas fa-map"></i><strong>&nbsp;&nbsp;Map</strong></a>
+                <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings/create']" *ngIf="user.role === 'admin' || user.role === 'company'"><i class="fas fa-plus-square"></i><strong>&nbsp;&nbsp;&nbsp;Create Parking</strong></a>
+                <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings/list']" *ngIf="user.role === 'admin' || user.role === 'company'"><i class="fas fa-car"></i><strong>&nbsp;&nbsp;&nbsp;List Parking</strong></a>
+                <a class="text-light d-block mt-2 ml-2" [routerLink]="['/user/list']"><i class="fas fa-users"></i><strong>&nbsp;&nbsp;Users List</strong></a>
+            </div>
           </div>
         </div>
-      </nav>
-
-
-
+        <nav class="navbar navbar-dark bg-primary">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-brand">&nbsp;&nbsp;&nbsp;Parking<strong>Spot</strong></span>
+          </button>
+            <ul class="nav navbar-nav text-light d-inline">
+              <li class="d-inline"><a [routerLink]="['/signup']" class="btn.btn-default btn-lg text-light"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+              <li class="d-inline"><a [routerLink]="['/login']" class="btn.btn-default btn-lg text-light"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li class="d-inline"><a (click)="onclickLogout()" class="btn.btn-default btn-lg"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+      </div>

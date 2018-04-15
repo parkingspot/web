@@ -32,11 +32,12 @@ export class UserListComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-  onSubmitEdit(editForm, index) {
-    this.usersService.edit(this.users[index])
+  onSubmitEdit(editForm) {
+    let pos = this.findWithAttr(this.users, 'id', editForm.id)
+    this.usersService.edit(this.users[pos])
       .subscribe(
         (user) => {
-          this.users[index] = editForm;
+          this.users[pos] = editForm;
           this.router.navigate(['/user/list']);
         },
         (error) => {
@@ -44,8 +45,11 @@ export class UserListComponent implements OnInit {
         }
       );
   }
-  onSubmitDelete(deleteForm, index) {
-    this.users.splice(this.users.indexOf(index), 1);
+  onSubmitDelete(deleteForm) {
+    let pos = this.findWithAttr(this.users, 'id', deleteForm.id);
+    
+
+    this.users.splice(pos, 1);
     this.usersService.delete(deleteForm.id)
       .subscribe(
         (user) => {
@@ -56,5 +60,14 @@ export class UserListComponent implements OnInit {
           this.apiError = error;
         }
       );
+  }
+
+  findWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
   }
 }

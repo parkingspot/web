@@ -1,17 +1,25 @@
 <div class="container">
   <h2>Users List</h2>
-  <div *ngFor="let user of users; let i = index">
+  <div *ngFor="let user of users">
     <div class="panel-group form-group">
       <div class="panel panel-default">
-        <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value, i)">
-          <div class="panel-heading"> {{user.email}}</div>
+
+        <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
+          <div class="panel-heading"> {{user.name}}</div>
           <div class="panel-body">
             <table class="table">
               <tbody>
+                  <tr>
+                      <th>Name</th>
+                      <td>
+                        <input type="text" class="form-control" name="name" #name="ngModel" [value]="user.name" [(ngModel)]="user.name"
+                               required>
+                      </td>
+                    </tr>
               <tr>
-                <th>Email:</th>
+                <th>Email</th>
                 <td>
-                  <input type="text" class="form-control" name="email" #address="ngModel" [value]="user.address" [(ngModel)]="user.email"
+                  <input type="text" class="form-control" name="email" #email="ngModel" [value]="user.email" [(ngModel)]="user.email"
                          required>
                 </td>
               </tr>
@@ -24,10 +32,12 @@
             <button class="btn btn-success">Save</button>
           </div>
         </form>
-        <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value, i)">
+
+        <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
           <input name="id" type="hidden" #id="ngModel" [value]="user.id" [(ngModel)]="user.id">
           <button class="btn btn-danger">Delete</button>
         </form>
+
       </div>
     </div>
   </div>

@@ -36,9 +36,10 @@ export class ParkingListComponent implements OnInit {
     }
   }
 
-  onSubmitEdit(editForm, index) {
+  onSubmitEdit(editForm) {
+    let pos = this.findWithAttr(this.parkings, 'id', editForm.id);
     const newParking = {
-      ...this.parkings[index],
+      ...this.parkings[pos],
       location: {
         type: 'Point',
         coordinates: [editForm.longitude, editForm.latitude]
@@ -48,8 +49,8 @@ export class ParkingListComponent implements OnInit {
     this.parkingService.edit(newParking)
       .subscribe(
         (parking) => {
-          this.parkings[index] = parking;
-          this.router.navigate(['/parkings']);
+          this.parkings[pos] = parking;
+          this.router.navigate(['/parkings/list']);
         },
         (error) => {
           this.apiError = error;
@@ -57,15 +58,26 @@ export class ParkingListComponent implements OnInit {
       );
   }
 
-  onSubmitDelete(deleteForm, index) {
+  onSubmitDelete(deleteForm) {
+    let pos = this.findWithAttr(this.parkings, 'id', deleteForm.id);
+    this.parkings.splice(pos, 1);
+
     this.parkingService.delete(deleteForm.id)
       .subscribe(
         (parking) => {
-          this.router.navigate(['/parkings']);
+          this.router.navigate(['/parkings/list']);
         },
         (error) => {
           this.apiError = error;
         }
       );
+  }
+  findWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
   }
 }

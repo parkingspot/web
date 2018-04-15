@@ -35,7 +35,6 @@ export class ParkingsService extends BaseApiService {
       .catch(error => this.handleError(error));
   }
   public edit(parking: Parking): Observable<Parking> {
-    // return this.http.put(`PhonesService.PHONES_API/${parking.id}`, parking.asFormData(), new RequestOptions({ withCredentials: true }))
     return this.http.put(`${ParkingsService.PARKING_API}/${parking.id}`, JSON.stringify(parking), BaseApiService.defaultOptions)
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));

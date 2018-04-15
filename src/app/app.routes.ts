@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 
 // Components
@@ -8,6 +7,7 @@ import { SignupComponent } from './components/misc/signup/signup.component';
 import { LoginComponent } from './components/misc/login/login.component';
 import { ParkingListComponent } from './components/parking/parking-list/parking-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parkings', pathMatch: 'full'},
@@ -16,6 +16,7 @@ export const routes: Routes = [
   { path: 'parkings/list', component: ParkingListComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'user', component: UserProfileComponent},
   { path: 'user/list', component: UserListComponent}
 ];
 

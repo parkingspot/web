@@ -44,6 +44,11 @@ export class SessionService extends BaseApiService {
     return this.user;
   }
 
+  // setUser(user: User) {
+  //   console.log(this.user);
+  //   this.user = user;
+  // }
+
   onUserChanges(): Observable<User> {
     return this.userSubject.asObservable();
   }
