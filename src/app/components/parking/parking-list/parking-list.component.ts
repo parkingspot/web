@@ -5,6 +5,11 @@ import { SessionService } from './../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+//Añadido
+import { FormControl } from '@angular/forms';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { ElementRef, ViewChild, NgZone } from '@angular/core';
+
 @Component({
   selector: 'app-parking-list',
   templateUrl: './parking-list.component.html',
@@ -16,10 +21,21 @@ export class ParkingListComponent implements OnInit {
   parking: any;
   apiError: string;
 
+  // Añadido
+  searchControl: FormControl;
+  location: Array<number>;
+  address: String;
+
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
+
   constructor(
     private parkingService: ParkingsService,
     private sessionService: SessionService,
     private router: Router
+    // Añadido
+    ,private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -34,6 +50,33 @@ export class ParkingListComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+
+    // create search FormControl
+    this.searchControl = new FormControl();
+
+        // load Places Autocomplete
+        this.mapsAPILoader.load().then(() => {
+          const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+            types: ['address']
+          });
+    
+          autocomplete.addListener('place_changed', () => {
+            this.ngZone.run(() => {
+              // get the place result
+              const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+    
+              // verify result
+              if (place.geometry === undefined || place.geometry === null) {
+                return;
+              }
+              // set latitude, longitude and zoom
+              this.location[0] = place.geometry.location.lng();
+              this.location[1] = place.geometry.location.lat();
+              this.address = place.formatted_address;
+            });
+          });
+        });
+
   }
 
   onSubmitEdit(editForm) {
@@ -72,6 +115,7 @@ export class ParkingListComponent implements OnInit {
         }
       );
   }
+  
   findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
         if(array[i][attr] === value) {
@@ -80,4 +124,10 @@ export class ParkingListComponent implements OnInit {
     }
     return -1;
   }
+
+  //Añadido
+  // toggleDisable() {
+  //   console.log("Hola")
+  //   this.disableTextbox = !this.disableTextbox;
+  // }
 }

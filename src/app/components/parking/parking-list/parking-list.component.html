@@ -1,12 +1,15 @@
 <div class="container">
   <h2>Parkings List</h2>
+
+  <!-- <div class="card-columns"> -->
+
   <div *ngFor="let parking of parkings">
     <div class="card" >
-      <!-- <div class="panel panel-default"> -->
         <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
 
           <div class="card-header"> {{parking.name}}</div>
             <ul class="list-group list-group-flush">
+
               <li class="list-group-item">Address
                 <input
                   class="form-control"
@@ -17,6 +20,24 @@
                   [(ngModel)]="parking.address"
                 required>
               </li>
+
+               <!-- Inicio Añadido buscador -->
+
+                <li class="list-group-item" (click)='toggleDisable()'>
+                  <label for="address">Search New Address</label>
+                  <input
+                    disabled
+                    id="address"
+                    placeholder="Enter new parking address"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="off"
+                    type="text"
+                    class="form-control"
+                    #search [formControl]="searchControl">
+                </li>
+                
+              <!-- Fin Añadido buscador -->
 
               <li class="list-group-item">Longitude
                 <input 
@@ -39,6 +60,7 @@
                   [(ngModel)]="parking.location[1]"
                 required>
               </li>
+
 
               <li class="list-group-item">Spots
                 <input 
@@ -85,7 +107,9 @@
 
           <button class="btn btn-danger">Delete</button>
         </form>
-      <!-- </div> -->
+
+  <!-- </div> -->
+
     </div>
   </div>
 </div>
