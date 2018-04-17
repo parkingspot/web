@@ -1,0 +1,8 @@
+<div *ngIf="userParkings.length > 0" >
+  <ul *ngFor="let parking of userParkings">
+    <li>
+      {{parking.name}}
+      <a [routerLink]="['/parkings/list']">Enlace</a>
+    </li>
+  </ul>
+</div>

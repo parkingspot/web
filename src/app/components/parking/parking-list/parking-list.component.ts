@@ -5,6 +5,11 @@ import { SessionService } from './../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+//Añadido
+import { FormControl } from '@angular/forms';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { ElementRef, ViewChild, NgZone } from '@angular/core';
+
 @Component({
   selector: 'app-parking-list',
   templateUrl: './parking-list.component.html',
@@ -15,11 +20,24 @@ export class ParkingListComponent implements OnInit {
   parkings: Array<Parking> = [];
   parking: any;
   apiError: string;
+  isAddressDisabled: Boolean = false;
+  newParking: any;
+
+  // Añadido
+  searchControl: FormControl;
+  location: Array<number> = [];
+  address: String;
+
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
 
   constructor(
     private parkingService: ParkingsService,
     private sessionService: SessionService,
     private router: Router
+    // Añadido
+    ,private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -34,19 +52,64 @@ export class ParkingListComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+
+    // create search FormControl
+    this.searchControl = new FormControl();
+
+        // load Places Autocomplete
+        this.mapsAPILoader.load().then(() => {
+          const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+            types: ['address']
+          });
+    
+          autocomplete.addListener('place_changed', () => {
+            this.ngZone.run(() => {
+              // get the place result
+              const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+    
+              // verify result
+              if (place.geometry === undefined || place.geometry === null) {
+                return;
+              }
+              // set latitude, longitude and zoom
+              console.log(place.geometry.location.lng());
+              this.location[0] = place.geometry.location.lng();
+              this.location[1] = place.geometry.location.lat();
+              this.address = place.formatted_address;
+            });
+          });
+        });
+
   }
 
   onSubmitEdit(editForm) {
     let pos = this.findWithAttr(this.parkings, 'id', editForm.id);
-    const newParking = {
-      ...this.parkings[pos],
-      location: {
-        type: 'Point',
-        coordinates: [editForm.longitude, editForm.latitude]
+    if(this.location[0] === undefined
+      || this.location[1] === undefined
+      || this.address === undefined ) {
+        console.log('No hemos pulsado Google Maps') 
+        this.newParking = {
+          ...this.parkings[pos],
+          location: {
+            type: 'Point',
+            coordinates: [editForm.longitude, editForm.latitude]
+          }
+        };
+      } else {
+        console.log('LOLA' + this.location[0])
+        this.newParking = {
+          
+          ...this.parkings[pos],
+          location: {
+            type: 'Point',
+            coordinates: [this.location[0], this.location[1]]
+          }
+        };
+        this.newParking.address = this.address
       }
-    };
+    
 
-    this.parkingService.edit(newParking)
+    this.parkingService.edit(this.newParking)
       .subscribe(
         (parking) => {
           this.parkings[pos] = parking;
@@ -72,6 +135,7 @@ export class ParkingListComponent implements OnInit {
         }
       );
   }
+  
   findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
         if(array[i][attr] === value) {
@@ -80,4 +144,16 @@ export class ParkingListComponent implements OnInit {
     }
     return -1;
   }
+
+  toggleAddress() {
+    console.log('cambio estado')
+    console.log(this.isAddressDisabled)
+    this.isAddressDisabled = !this.isAddressDisabled;
+  }
+
+  //Añadido
+  // toggleDisable() {
+  //   console.log("Hola")
+  //   this.disableTextbox = !this.disableTextbox;
+  // }
 }

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
   user: User;
   apiError: String;
+  // showParkings: Boolean = false;
 
   constructor(
     private usersService: UsersService,
@@ -39,5 +40,10 @@ export class UserProfileComponent implements OnInit {
         }
       );
   }
+
+
+  // buttonClick() {
+  //   cambia el showParkings a true
+  // }
   
 }
