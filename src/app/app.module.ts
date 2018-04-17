@@ -30,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ParkingListComponent } from './components/parking/parking-list/parking-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { UserParkingsComponent } from './components/parking/user-parkings/user-parkings.component';
 
 
 
@@ -45,7 +46,8 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
     AutocompleteComponent,
     ParkingListComponent,
     UserListComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserParkingsComponent
   ],
   imports: [
     NgbModule.forRoot(),

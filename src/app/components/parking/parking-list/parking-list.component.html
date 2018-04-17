@@ -19,14 +19,15 @@
                   [value]="parking.address" 
                   [(ngModel)]="parking.address"
                 required>
+                <div (click)="toggleAddress()">Editar direccion</div>
               </li>
 
                <!-- Inicio Añadido buscador -->
 
-                <li class="list-group-item" (click)='toggleDisable()'>
+                <li class="list-group-item">
                   <label for="address">Search New Address</label>
                   <input
-                    disabled
+                    [readonly]="!isAddressDisabled"
                     id="address"
                     placeholder="Enter new parking address"
                     autocorrect="off"

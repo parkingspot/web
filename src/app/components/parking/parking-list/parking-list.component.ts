@@ -20,10 +20,12 @@ export class ParkingListComponent implements OnInit {
   parkings: Array<Parking> = [];
   parking: any;
   apiError: string;
+  isAddressDisabled: Boolean = false;
+  newParking: any;
 
   // Añadido
   searchControl: FormControl;
-  location: Array<number>;
+  location: Array<number> = [];
   address: String;
 
   @ViewChild('search')
@@ -70,6 +72,7 @@ export class ParkingListComponent implements OnInit {
                 return;
               }
               // set latitude, longitude and zoom
+              console.log(place.geometry.location.lng());
               this.location[0] = place.geometry.location.lng();
               this.location[1] = place.geometry.location.lat();
               this.address = place.formatted_address;
@@ -81,15 +84,32 @@ export class ParkingListComponent implements OnInit {
 
   onSubmitEdit(editForm) {
     let pos = this.findWithAttr(this.parkings, 'id', editForm.id);
-    const newParking = {
-      ...this.parkings[pos],
-      location: {
-        type: 'Point',
-        coordinates: [editForm.longitude, editForm.latitude]
+    if(this.location[0] === undefined
+      || this.location[1] === undefined
+      || this.address === undefined ) {
+        console.log('No hemos pulsado Google Maps') 
+        this.newParking = {
+          ...this.parkings[pos],
+          location: {
+            type: 'Point',
+            coordinates: [editForm.longitude, editForm.latitude]
+          }
+        };
+      } else {
+        console.log('LOLA' + this.location[0])
+        this.newParking = {
+          
+          ...this.parkings[pos],
+          location: {
+            type: 'Point',
+            coordinates: [this.location[0], this.location[1]]
+          }
+        };
+        this.newParking.address = this.address
       }
-    };
+    
 
-    this.parkingService.edit(newParking)
+    this.parkingService.edit(this.newParking)
       .subscribe(
         (parking) => {
           this.parkings[pos] = parking;
@@ -123,6 +143,12 @@ export class ParkingListComponent implements OnInit {
         }
     }
     return -1;
+  }
+
+  toggleAddress() {
+    console.log('cambio estado')
+    console.log(this.isAddressDisabled)
+    this.isAddressDisabled = !this.isAddressDisabled;
   }
 
   //Añadido
