@@ -1,44 +1,63 @@
 <div class="container">
-  <h2>Users List</h2>
-  <div *ngFor="let user of users">
-    <div class="panel-group form-group">
-      <div class="panel panel-default">
 
-        <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
-          <div class="panel-heading"> {{user.name}}</div>
-          <div class="panel-body">
-            <table class="table">
-              <tbody>
-                  <tr>
-                      <th>Name</th>
-                      <td>
-                        <input type="text" class="form-control" name="name" #name="ngModel" [value]="user.name" [(ngModel)]="user.name"
-                               required>
-                      </td>
-                    </tr>
-              <tr>
-                <th>Email</th>
-                <td>
-                  <input type="text" class="form-control" name="email" #email="ngModel" [value]="user.email" [(ngModel)]="user.email"
-                         required>
-                </td>
-              </tr>
+  <h1 class="row align-items-center justify-content-left">Users List</h1>
 
-              <input name="id" type="hidden" #id="ngModel" [value]="user.id" [(ngModel)]="user.id">
+  <div class="row align-items-center justify-content-left" *ngFor="let user of users">
+    <!-- <div class="panel-group form-group"> -->
+      <div class="card col-6">
 
-              </tbody>
-            </table>
+        <form class="contenedor" #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
+          <div class="card-header text-left"> 
+            <h4><strong>{{user.name}}</strong> <i>from {{user.city}}</i></h4>
+          </div>
+          <ul class="list-group list-group-flush">
+          <li class="list-group-item col-6">
+            <div class="input-group">
+            <label>Name</label> &nbsp;
+            <input type="text" 
+              class="form-control" 
+              name="name" 
+              #name="ngModel" 
+              [value]="user.name" 
+              [(ngModel)]="user.name"
+            required>
+          </div>
+          </li>
+          <li class="list-group-item col-6"> 
+              <div class="input-group">
+            <label>Email</label> &nbsp;
+              <input type="text" 
+                class="form-control" 
+                name="email" 
+                #email="ngModel" 
+                [value]="user.email" 
+                [(ngModel)]="user.email"
+               required>
+              </div>
+          </li>
+              <input name="id" 
+                type="hidden" 
+                #id="ngModel" 
+                [value]="user.id" 
+                [(ngModel)]="user.id">
 
             <button class="btn btn-success">Save</button>
-          </div>
+          </ul>
         </form>
 
         <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
-          <input name="id" type="hidden" #id="ngModel" [value]="user.id" [(ngModel)]="user.id">
+          <input name="id" 
+            type="hidden" 
+            #id="ngModel" 
+            [value]="user.id" 
+            [(ngModel)]="user.id">
+
           <button class="btn btn-danger">Delete</button>
         </form>
           
-      </div>
+
+    </div>
+
+
     </div>
   </div>
-</div>

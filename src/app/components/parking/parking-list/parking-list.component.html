@@ -1,16 +1,23 @@
 <div class="container">
-  <h2>Parkings List</h2>
+    <!-- row align-items-center justify-content-center -->
+  <h1 class="row align-items-center justify-content-left">Parkings List</h1>
 
   <!-- <div class="card-columns"> -->
 
-  <div *ngFor="let parking of parkings">
-    <div class="card" >
+  <div class="row align-items-center justify-content-left" *ngFor="let parking of parkings">
+    <div class="card col-6" >
         <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
-
-          <div class="card-header"> {{parking.name}}</div>
+        <div>
+          <div class="card-header text-left"> 
+            <h4>{{parking.name}}</h4>
+          </div>
+        </div>
             <ul class="list-group list-group-flush">
 
-              <li class="list-group-item">Address
+              <li class="list-group-item">
+                  <label>Address</label>
+                <div class="input-group">
+               
                 <input
                   class="form-control"
                   type="text" 
@@ -19,13 +26,14 @@
                   [value]="parking.address" 
                   [(ngModel)]="parking.address"
                 required>
-                <div (click)="toggleAddress()">Editar direccion</div>
+                
+                <div class="btn-secondary"(click)="toggleAddress()">EDIT</div>
+              </div>
               </li>
 
                <!-- Inicio Añadido buscador -->
 
                 <li class="list-group-item">
-                  <label for="address">Search New Address</label>
                   <input
                     [readonly]="!isAddressDisabled"
                     id="address"
@@ -40,30 +48,10 @@
                 
               <!-- Fin Añadido buscador -->
 
-              <li class="list-group-item">Longitude
-                <input 
-                  class="form-control" 
-                  type="number" 
-                  name="longitude" 
-                  #parking.longitude="ngModel" 
-                  [value]="parking.location[0]" 
-                  [(ngModel)]="parking.location[0]"
-                required>
-              </li>
-                
-              <li class="list-group-item">Latitude
-                <input 
-                  type="number" 
-                  class="form-control" 
-                  name="latitude" 
-                  #parking.latitude="ngModel" 
-                  [value]="parking.location[1]" 
-                  [(ngModel)]="parking.location[1]"
-                required>
-              </li>
-
-
-              <li class="list-group-item">Spots
+              <li class="list-group-item">
+                <div class="input-group">
+                <label>Spots</label>
+                <div class="col-3">
                 <input 
                   class="form-control" 
                   type="text" 
@@ -72,9 +60,14 @@
                   [value]="parking.totalParkingSpots"
                   [(ngModel)]="parking.totalParkingSpots" 
                 required>
+              </div>
+            </div>
               </li>
           
-              <li class="list-group-item">Schedule
+              <li class="list-group-item">
+                  <div class="input-group">
+                  <label>Schedule</label>
+                  <div class="col-3">    
                 <input 
                   type="text" 
                   class="form-control" 
@@ -83,19 +76,36 @@
                   [value]="parking.schedule" 
                   [(ngModel)]="parking.schedule"
                 required>
+              </div>
+              </div>
             </li>
-        
+       
               <input name="id" 
                 type="hidden" 
                 #id="ngModel" 
                 [value]="parking.id" 
                 [(ngModel)]="parking.id">
+
+              <input 
+                 class="form-control" 
+                 type="hidden" 
+                 name="longitude" 
+                 #parking.longitude="ngModel" 
+                 [value]="parking.location[0]" 
+                [(ngModel)]="parking.location[0]"
+              required> 
+
+              <input 
+                type="hidden" 
+                class="form-control" 
+                name="latitude" 
+                #parking.latitude="ngModel" 
+                [value]="parking.location[1]" 
+                [(ngModel)]="parking.location[1]"
+              required>
             </ul>
 
-              <button class="btn btn-success">Save</button>
-
-            
-
+              <button class="btn btn-success btn-sm">Save</button>  
         </form>
 
         <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
@@ -105,12 +115,11 @@
           #id="ngModel" 
           [value]="parking.id" 
           [(ngModel)]="parking.id">
-
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger btn-sm">Delete</button>
         </form>
 
   <!-- </div> -->
-
     </div>
   </div>
 </div>
+
