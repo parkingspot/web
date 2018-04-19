@@ -3,8 +3,8 @@
     <div class="card col-6">
         
       <div> 
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-map [latitude]="parking.location[1]" [longitude]="parking.location[0]" [zoom]="zoom">
+          <agm-marker [latitude]="parking.location[1]" [longitude]="parking.location[0]"></agm-marker>
         </agm-map>
       </div>
         <div class="card-body">

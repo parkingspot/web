@@ -23,7 +23,8 @@ export class UserParkingsComponent implements OnInit {
       .subscribe((parkings) => {
         console.log(parkings)
         this.userParkings = parkings
-    })
+    }
+    )
   }
   
 
