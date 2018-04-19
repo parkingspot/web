@@ -1,13 +1,18 @@
+<div>
 <agm-map
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
   [backgroundColor]="backgroundColor">
+  <agm-marker [latitude]="lat" 
+              [longitude]="lng"
+              [iconUrl]="'./assets/img/you-are-here-icon.png'">
+              </agm-marker>
 
   <agm-marker *ngFor="let parking of parkings; let i = index"
               [latitude]="parking.location[1]"
               [longitude]="parking.location[0]"
-              [iconUrl]="'./assets/img/icon2.png'"
+              [iconUrl]="'./assets/img/parking-marker2.png'"
   >
       <agm-direction *ngIf="dir"
                      [origin]="dir.origin"
@@ -18,11 +23,11 @@
       </agm-direction>
       <agm-info-window>
         <h3>{{parking.name}}</h3>
-        <p> {{parking.schedule }} </p>
         <p> {{parking.address }} </p>
-        <button (click)="getDirection(i)">Mirame y no me toques</button>
+        <button class="btn btn-success" (click)="getDirection(i)">GO TO</button>
 
       </agm-info-window>
   </agm-marker>
 
 </agm-map>
+</div>

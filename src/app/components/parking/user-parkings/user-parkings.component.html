@@ -1,8 +1,24 @@
-<div *ngIf="userParkings.length > 0" >
-  <ul *ngFor="let parking of userParkings">
-    <li>
-      {{parking.name}}
-      <a [routerLink]="['/parkings/list']">Enlace</a>
-    </li>
-  </ul>
+<div *ngIf="userParkings.length > 0" class="col-8">
+  <div *ngFor="let parking of userParkings">
+    <div class="card col-6">
+        
+      <div> 
+        <agm-map [latitude]="parking.location[1]" [longitude]="parking.location[0]" [zoom]="zoom">
+          <agm-marker [latitude]="parking.location[1]" [longitude]="parking.location[0]"></agm-marker>
+        </agm-map>
+      </div>
+        <div class="card-body">
+      <h4 class="card-title"><strong>{{parking.name}}</strong></h4>
+      <p>{{parking.address}}</p>
+      <a [routerLink]="['/parkings/list']">Edit parking</a>
+    </div>
+    </div>
+  </div>
 </div>
+
+
+
+    
+<!--     
+      <p class="card-text">Some example text. Some example text.</p> -->
+
