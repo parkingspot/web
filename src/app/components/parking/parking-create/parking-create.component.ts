@@ -18,10 +18,10 @@ export class ParkingCreateComponent implements OnInit {
 
   parking: Parking = new Parking();
   apiError: string;
-  /*
+  // Descomentado
   latitude: number;
   longitude: number;
-  */
+  
   location: Array<number>;
   searchControl: FormControl;
   zoom: number;
@@ -85,7 +85,7 @@ export class ParkingCreateComponent implements OnInit {
     }
   }
 
-  onSubmitParking(parkingForm: NgForm) {
+  onSubmitParking(/*parkingForm: NgForm*/) {
   const newParking = {
     ...this.parking,
     location: new Array(this.location[0], this.location[1]),

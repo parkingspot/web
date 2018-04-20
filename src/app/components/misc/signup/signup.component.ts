@@ -18,7 +18,7 @@ export class SignupComponent {
   ) {}
 
 
-  onSubmitSignup(signupForm) {
+  onSubmitSignup() {
     this.usersService.create(this.user).subscribe(
       (user) => {
         this.router.navigate(['/login']);

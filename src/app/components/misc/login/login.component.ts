@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  onSubmitLogin(loginForm) {
+  onSubmitLogin() {
     this.sessionService.authenticate(this.user).subscribe(
       (user) => {
         this.router.navigate(['/']);
