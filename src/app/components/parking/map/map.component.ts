@@ -31,14 +31,8 @@ export class MapComponent implements OnInit {
     this.location = {
       type: 'Point', coordinates: [this.lng, this.lat]
     };
-    /*
-    this.parkingService.list()
-      .subscribe((parkings) => this.parkings = parkings);
-    */
     this.parkingService.near(this.location)
       .subscribe((parkings) => this.parkings = parkings);
-
-
   }
 
   getDirection(i) {

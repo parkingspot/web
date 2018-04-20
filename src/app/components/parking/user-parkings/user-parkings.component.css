@@ -1,13 +1,24 @@
 .card {
     color: #7a7a7a;
     border-radius: 3px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     background: #fff;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px;
+    /* padding: 30px; */
   }
 
   agm-map {
+
     height: 150px;
-    width: 300px;
+    width: 100%;
+
+  }
+
+
+  .input-group{
+    align-items: center;
+  }
+
+  label {
+    /*margin-bottom: false; */
   }

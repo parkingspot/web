@@ -1,59 +1,56 @@
-
-<div class="container">
+<div class="card container align-items-center justify-content-center col-xs-12 col-sm-6 mt-4 bt-5">
   <div class="row align-items-center">
-    <div class="card col-6">
-        <!-- <img class="card-img-top" src=""> -->
-        <div class="card-body">
-<form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm)">
-    <div class="card-title">
-      <h2><strong>{{user.name}}</strong> <i>from {{user.city}}</i></h2></div>
-      
-      <div class="card-text col-8">
-        <div class="input-group">
-          <label>Name</label> &nbsp;
-          <input type="text" 
-            class="form-control"
-            name="name" 
-            #name="ngModel" 
-            [value]="user.name" 
-            [(ngModel)]="user.name"
-          required>
-       </div>
-        <div class="input-group">
-          <label>Email</label> &nbsp;
-          <input type="text" 
-            class="form-control" 
-            name="email" 
-            #email="ngModel" 
-            [value]="user.email" 
-            [(ngModel)]="user.email"
-           required>
-        </div>
-        <br>
-        <input name="id" 
-          type="hidden" 
-          #id="ngModel" 
-          [value]="user.id" 
-          [(ngModel)]="user.id">
 
-      <button class="btn btn-success">Save</button>
-
-    </div>
-  </form>
-</div>
-
-</div>
-</div>
-
-<!-- 
-  <div ngif user have parkings ></div> -->
+      <img class="card-img-top" src="https://www.ripon.edu/wp-content/uploads/2014/01/parking_header-1220x200.jpg">
   </div>
+  <div class="row align-items-center">
+
+
+    <div class="card-body mt-2 form-group row">
+        <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm)">
+          <div class="card-title mb-4">
+            <h2><strong>{{user.name}}</strong> <i>from {{user.city}}</i></h2>
+          </div>
+
+          <div class="card-text col-12">
+            <div class="input-group">
+              <label class="mt-2"> Name </label> &nbsp;
+              <input type="text"
+                     class="form-control"
+                     name="name"
+                     #name="ngModel"
+                     [value]="user.name"
+                     [(ngModel)]="user.name"
+                     required>
+            </div>
+            <br>
+            <div class="input-group">
+              <label class="mt-2"> Email </label> &nbsp;
+              <input type="text"
+                     class="form-control"
+                     name="email"
+                     #email="ngModel"
+                     [value]="user.email"
+                     [(ngModel)]="user.email"
+                     required>
+            </div>
+            <br>
+            <input name="id"
+                   type="hidden"
+                   #id="ngModel"
+                   [value]="user.id"
+                   [(ngModel)]="user.id">
+
+              <button class="btn btn-primary center-block">Save</button>
+
+          </div>
+        </form>
+      </div>
+
+  </div>
+
+
+</div>
 <div class="container">
   <app-user-parkings></app-user-parkings>
 </div>
-
-
-  <!-- <button onclick ejecuta funcion>
-    Mostr
-  </button>
-  <micomponente ngif showparkings ></micomponente> -->

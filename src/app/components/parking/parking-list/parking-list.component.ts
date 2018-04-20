@@ -61,12 +61,10 @@ export class ParkingListComponent implements OnInit {
           const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
             types: ['address']
           });
-    
           autocomplete.addListener('place_changed', () => {
             this.ngZone.run(() => {
               // get the place result
               const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-    
               // verify result
               if (place.geometry === undefined || place.geometry === null) {
                 return;
@@ -83,11 +81,11 @@ export class ParkingListComponent implements OnInit {
   }
 
   onSubmitEdit(editForm) {
-    let pos = this.findWithAttr(this.parkings, 'id', editForm.id);
-    if(this.location[0] === undefined
+    let pos;
+    pos = this.findWithAttr(this.parkings, 'id', editForm.id);
+    if (this.location[0] === undefined
       || this.location[1] === undefined
       || this.address === undefined ) {
-        console.log('No hemos pulsado Google Maps') 
         this.newParking = {
           ...this.parkings[pos],
           location: {
@@ -96,9 +94,8 @@ export class ParkingListComponent implements OnInit {
           }
         };
       } else {
-        console.log('LOLA' + this.location[0])
         this.newParking = {
-          
+
           ...this.parkings[pos],
           location: {
             type: 'Point',
@@ -107,7 +104,7 @@ export class ParkingListComponent implements OnInit {
         };
         this.newParking.address = this.address
       }
-    
+
 
     this.parkingService.edit(this.newParking)
       .subscribe(
@@ -122,7 +119,8 @@ export class ParkingListComponent implements OnInit {
   }
 
   onSubmitDelete(deleteForm) {
-    let pos = this.findWithAttr(this.parkings, 'id', deleteForm.id);
+    let pos;
+    pos = this.findWithAttr(this.parkings, 'id', deleteForm.id);
     this.parkings.splice(pos, 1);
 
     this.parkingService.delete(deleteForm.id)
@@ -135,10 +133,10 @@ export class ParkingListComponent implements OnInit {
         }
       );
   }
-  
+
   findWithAttr(array, attr, value) {
-    for(var i = 0; i < array.length; i += 1) {
-        if(array[i][attr] === value) {
+    for (let i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
             return i;
         }
     }

@@ -1,39 +1,40 @@
 <div class="container">
-    <!-- row align-items-center justify-content-center -->
-  <h1 class="row align-items-center justify-content-left">Parkings List</h1>
+  <div class="row align-items-center justify-content-center"> <!-- row align-items-center justify-content-center -->
+    <div>
+    <h1>Parkings List</h1>
+    </div>
+  </div>
 
-  <!-- <div class="card-columns"> -->
-
-  <div class="row align-items-center justify-content-left" *ngFor="let parking of parkings">
-    <div class="card col-6" >
+  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings">
+    <div class="card col-xs-12 col-sm-6 mt-3">
         <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
-        <div>
-          <div class="card-header text-left"> 
+        <div class="mt-3">
+          <div class="card-header text-left">
             <h4>{{parking.name}}</h4>
           </div>
         </div>
             <ul class="list-group list-group-flush">
+              <li class="list-group-item mt-4">
+                  <h6 class="mt-2">{{ parking.address }}</h6>
+              </li>
+                  <!--
+                <div class="input-group"> -->
 
-              <li class="list-group-item">
-                  <label>Address</label>
-                <div class="input-group">
-               
                 <input
                   class="form-control"
-                  type="text" 
-                  name="address" 
-                  #address="ngModel" 
-                  [value]="parking.address" 
+                  type="hidden"
+                  name="address"
+                  #address="ngModel"
+                  [value]="parking.address"
                   [(ngModel)]="parking.address"
                 required>
-                
-                <div (click)="toggleAddress()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG6SURBVEhL7dZbK6VRHMfxPYSIQUnIaTJyK6/CjRfg+Aq8gZm3MSlKkZmaKePCKYeSuHUpOeYwxA1Nc6HMhcP3u3ueWvd7PUr51afHelb9/9byb2+597z1fER38nyVVOIHnvCcPL+jApnF4tuw4TXmkqfrGWQSm27CJjuohanDDR5R5YuYsek6bPoPTQgzC/d68qtIKcMqLJw6QheMJ49+4lIsw2a76MNCsra5J/faXUf7G9s0bbKHepgPWITv/ybPLUSZ6hI4sRY9QAPC9MI9bSBK02Kkw5JeZxhP7rW7v4ZoTX/BosdoRhhP7rW7v4JyFBybOiAWPUULwnjyfbi/BKe94BRhChY9RxvCePJDuD8PB6/gOKWTsOgffEKYVpzAfQcuWtNxWPQSHQjTDq/dfQfOaS84Nv0Gi/pB34kwntxrd/8nnIEoGYBF9R9f4S9jPsNrd8+vvGhNjUNi4d+4T37+Aj+Dr5L1NKI29b+GB9zBv5vfKjb3nR/4NnXgnPaoGYLFz9AIm3ty32kC6bVHTXrNusBtsB5DJk3Ta04bybXfRP3IpKkZRNhsGNXIPKMYQU1+9Z63n1zuBXOBf9PxGYJ1AAAAAElFTkSuQmCC"></div>
-                
-              </div>
-              </li>
+
+                <!-- <div (click)="toggleAddress()"><i class="fas fa-edit"></i></div> -->
+
+              <!-- </div> -->
 
                <!-- Inicio Añadido buscador -->
-
+             <div (click)="toggleAddress()">
                 <li class="list-group-item">
                   <input
                     [readonly]="!isAddressDisabled"
@@ -46,80 +47,80 @@
                     class="form-control"
                     #search [formControl]="searchControl">
                 </li>
-                
+            </div>
               <!-- Fin Añadido buscador -->
+<div class="form-row ml-5 mt-3">
+              <!-- <li class="list-group-item"> -->
+  <div class="form-group">
+                <label class="mt-2 ml-3">Spots</label>
 
-              <li class="list-group-item">
-                <div class="input-group">
-                <label>Spots</label>
-                <div class="col-3">
-                <input 
-                  class="form-control" 
-                  type="text" 
-                  name="totalParkingSpots" 
-                  #totalParkingSpots="ngModel" 
+                <div class="col-8">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="totalParkingSpots"
+                  #totalParkingSpots="ngModel"
                   [value]="parking.totalParkingSpots"
-                  [(ngModel)]="parking.totalParkingSpots" 
+                  [(ngModel)]="parking.totalParkingSpots"
                 required>
               </div>
-            </div>
-              </li>
-          
-              <li class="list-group-item">
-                  <div class="input-group">
-                  <label>Schedule</label>
-                  <div class="col-3">    
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  name="schedule" 
-                  #schedule="ngModel" 
-                  [value]="parking.schedule" 
+  </div>
+
+              <!-- </li> -->
+
+  <div class="form-group">
+                  <label class="mt-2 ml-3">Schedule</label>
+                  <div class="col-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="schedule"
+                  #schedule="ngModel"
+                  [value]="parking.schedule"
                   [(ngModel)]="parking.schedule"
                 required>
               </div>
-              </div>
-            </li>
-       
-              <input name="id" 
-                type="hidden" 
-                #id="ngModel" 
-                [value]="parking.id" 
+  </div>
+
+</div>
+              <input name="id"
+                type="hidden"
+                #id="ngModel"
+                [value]="parking.id"
                 [(ngModel)]="parking.id">
 
-              <input 
-                 class="form-control" 
-                 type="hidden" 
-                 name="longitude" 
-                 #parking.longitude="ngModel" 
-                 [value]="parking.location[0]" 
+              <input
+                 class="form-control"
+                 type="hidden"
+                 name="longitude"
+                 #parking.longitude="ngModel"
+                 [value]="parking.location[0]"
                 [(ngModel)]="parking.location[0]"
-              required> 
+              required>
 
-              <input 
-                type="hidden" 
-                class="form-control" 
-                name="latitude" 
-                #parking.latitude="ngModel" 
-                [value]="parking.location[1]" 
+              <input
+                type="hidden"
+                class="form-control"
+                name="latitude"
+                #parking.latitude="ngModel"
+                [value]="parking.location[1]"
                 [(ngModel)]="parking.location[1]"
               required>
             </ul>
 
-              <button class="btn btn-success btn-sm">Save</button>  
+              <button class="btn btn-success btn-sm mt-3 ml-2">Save</button>
         </form>
 
-        <form #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
-          <input 
-          name="id" 
-          type="hidden" 
-          #id="ngModel" 
-          [value]="parking.id" 
+        <form class="negative" #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
+          <input
+          name="id"
+          type="hidden"
+          #id="ngModel"
+          [value]="parking.id"
           [(ngModel)]="parking.id">
-          <button class="btn btn-danger btn-sm">Delete</button>
+          <button class="btn btn-danger btn-sm mt-2 mb-4 ml-2">Delete</button>
         </form>
 
-  <!-- </div> -->
     </div>
   </div>
 </div>

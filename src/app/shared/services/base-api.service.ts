@@ -14,7 +14,8 @@ export class BaseApiService {
 
   protected handleError(error: Response | any): Observable<any> {
     if (!environment.production) {
-      console.error(`${this.constructor.name} error: ${error}`);
+      /*console.error(`${this.constructor.name} error: ${error}`); */
+      console.log(error);
     }
     const errorData = error.json();
     errorData.status = error.status;
