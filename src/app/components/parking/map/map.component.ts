@@ -18,6 +18,7 @@ export class MapComponent implements OnInit {
   parkings: Array<Parking> = [];
   travelMode: String = 'WALKING';
   avoidHighways: Boolean = true;
+  radius: number = 3000; fillColor: string = 'rgba(255,95,41,1)';
 
   constructor( private parkingService: ParkingsService ) {
   }
