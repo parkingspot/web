@@ -3,6 +3,14 @@
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom">
+
+  <agm-circle [latitude]="lat" 
+              [longitude]="lng" 
+              [radius]="radius" 
+              [fillColor]="fillColor">
+  </agm-circle>
+
+
   <agm-marker [latitude]="lat" 
               [longitude]="lng"
               [iconUrl]="'./assets/img/you-are-here-icon.png'">
