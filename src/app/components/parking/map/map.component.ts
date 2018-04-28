@@ -16,13 +16,19 @@ export class MapComponent implements OnInit {
   lat = 40.391662;
   zoom = 14;
   parkings: Array<Parking> = [];
-  travelMode: String = 'WALKING';
+  travelMode: String = 'BICYCLING';
   avoidHighways: Boolean = true;
-  radius: number = 3000; fillColor: string = 'rgba(255,95,41,1)';
-
+  radius: Number = 3000; fillColor: String = 'rgba(12,101,255,0.30)';
+  infoWindowsArray: Array<any> = [];
+  parkingIcon = {
+    url: require('../../../../../src/assets/img/parking-marker2.png'),
+    scaledSize: {
+      height: 40,
+      width: 40
+    }
+  };
   constructor( private parkingService: ParkingsService ) {
   }
-
   updatePosition() {
     this.lng = -3.697588;
     this.lat = 40.391662;
@@ -37,7 +43,6 @@ export class MapComponent implements OnInit {
   }
 
   getDirection(i) {
-    console.log('getDirection')
     this.dir = {
       origin: {
         lng: -3.697588,
@@ -48,8 +53,19 @@ export class MapComponent implements OnInit {
         lat: this.parkings[i].location[1]
       }
     };
-
     console.log(this.parkings[i].location[0])
     console.log(this.parkings[i].location[1]);
+  }
+
+  pushInfoWindow(e) {
+    for (let i = 0; i < this.infoWindowsArray.length; i++) {
+      this.infoWindowsArray[i].close();
+    }
+    this.infoWindowsArray.push(e);
+  }
+  closeInfoWindow() {
+    for (let i = 0; i < this.infoWindowsArray.length; i++) {
+      this.infoWindowsArray[i].close();
+    }
   }
 }
