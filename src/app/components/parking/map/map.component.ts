@@ -20,13 +20,10 @@ export class MapComponent implements OnInit {
   avoidHighways: Boolean = true;
   radius: Number = 3000; fillColor: String = 'rgba(12,101,255,0.30)';
   infoWindowsArray: Array<any> = [];
-  parkingIcon = {
-    url: require('../../../../../src/assets/img/parking-marker2.png'),
-    scaledSize: {
-      height: 40,
-      width: 40
-    }
-  };
+  labelOptions: Array<Object> = [];
+
+
+
   constructor( private parkingService: ParkingsService ) {
   }
   updatePosition() {
@@ -39,8 +36,27 @@ export class MapComponent implements OnInit {
       type: 'Point', coordinates: [this.lng, this.lat]
     };
     this.parkingService.near(this.location)
-      .subscribe((parkings) => this.parkings = parkings);
+      .subscribe((parkings) => {
+        this.parkings = parkings;
+        for (let i = 0; i < this.parkings.length; i++) {
+          console.log('Entro');
+          this.labelOptions[i] = {
+            color: '#CC0000',
+            fontFamily: '',
+            fontSize: '44px',
+            fontWeight: 'bold',
+            text : parkings[i].price + ' €'
+          };
+        }
+      });
   }
+
+/*
+{
+
+  text: 'Some text'
+}
+*/
 
   getDirection(i) {
     this.dir = {

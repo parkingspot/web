@@ -14,14 +14,16 @@
 
     <agm-marker [latitude]="lat"
                 [longitude]="lng"
-                [iconUrl]="'./assets/img/you-are-here-icon.png'">
+                [iconUrl]="'./assets/img/pin.png'">
     </agm-marker>
 
     <agm-marker (markerClick)="pushInfoWindow(infowindow)"
                 *ngFor="let parking of parkings; let i = index"
                 [latitude]="parking.location[1]"
                 [longitude]="parking.location[0]"
-                [iconUrl]="parkingIcon"
+                [iconUrl]="'./assets/img/marker2.png'"
+                [label]="labelOptions[i]"
+
     >
       <agm-direction *ngIf="dir"
                      [origin]="dir.origin"
@@ -34,9 +36,22 @@
         #infowindow
       >
         <div class="display-4">
-        <p class="info-title">{{parking.name}}</p>
-        <p class="info-address"> {{parking.address }} </p>
-        <button class="btn btn-primary" (click)="getDirection(i)">GO TO</button>
+          <p class="info-title">{{parking.name}}</p>
+          <table class="table info-address">
+            <tr>
+              <td><i class="fas fa-building"></i></td>
+              <td><span class="mt-3 ml-3">{{parking.address }} </span></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-car"></i></td>
+              <td><span class="mt-3 ml-3">{{ parking.availableParkingSpots }} available spots</span></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-euro-sign"></i></td>
+              <td><span class="mt-3 ml-3">{{ parking.price}} per hour&nbsp;&nbsp;</span></td>
+            </tr>
+          </table>
+          <button class="btn btn-primary" (click)="getDirection(i)">GO TO</button>
         </div>
       </agm-info-window>
     </agm-marker>

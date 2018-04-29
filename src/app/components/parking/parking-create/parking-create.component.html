@@ -52,7 +52,19 @@
              placeholder="Enter Total Parking Spots"
              #totalParkingSpots="ngModel"
              [(ngModel)]="parking.totalParkingSpots" required>
-      <span class="text-danger" *ngIf="totalParkingSpots.touched && totalParkingSpots.errors">Name not valid</span>
+      <span class="text-danger" *ngIf="totalParkingSpots.touched && totalParkingSpots.errors">Total spots not valid</span>
+    </div>
+
+    <div class="form-group" [class.has-error]="price.touched && price.errors">
+      <label for="price">Price</label>
+      <input type="number"
+             class="form-control"
+             id="price"
+             name="price"
+             placeholder="Enter Price"
+             #price="ngModel"
+             [(ngModel)]="parking.price" required>
+      <span class="text-danger" *ngIf="price.touched && price.errors">Price not valid</span>
     </div>
 
     <div class="form-group">
@@ -64,7 +76,7 @@
              placeholder="Enter Schedule"
              #schedule="ngModel"
              [(ngModel)]="parking.schedule" required>
-      <span class="text-danger" *ngIf="schedule.touched && schedule.errors">Email not valid</span>
+      <span class="text-danger" *ngIf="schedule.touched && schedule.errors">Schedule not valid</span>
     </div>
 
     <button class="btn" [disabled]="!parkingForm.valid">Create Parking</button>

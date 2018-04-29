@@ -6,4 +6,5 @@ export class Parking {
     availableParkingSpots?: number;
     schedule?: string;
     location?: Object;
+    price?: string;
 }
