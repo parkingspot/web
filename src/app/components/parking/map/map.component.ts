@@ -9,6 +9,8 @@ import { ParkingsService } from '../../../shared/services/parkings.service';
 import { Parking } from '../../../shared/models/parking.model';
 import { AgmDirectionModule } from 'agm-direction';
 
+declare function require (path: string);
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -26,6 +28,7 @@ export class MapComponent implements OnInit {
   radius: Number = 3000; fillColor: String = 'rgba(12,101,255,0.30)';
   infoWindowsArray: Array<any> = [];
   labelOptions: Array<Object> = [];
+  icon: Array<Object> = [];
 
   public searchControl: FormControl;
 
@@ -50,6 +53,7 @@ export class MapComponent implements OnInit {
 
     //create search FormControl
     this.searchControl = new FormControl();
+
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -75,13 +79,32 @@ export class MapComponent implements OnInit {
     this.parkingService.near(this.location)
       .subscribe((parkings) => {
         this.parkings = parkings;
+        //Sort
+        this.parkings.sort((a,b) => parseFloat(a.price) - parseFloat(b.price));
+        let minPrice = this.parkings[0].price;
         for (let i = 0; i < this.parkings.length; i++) {
-          console.log('Entro');
+          this.icon[i] = {
+            url: require( '../../../../assets/img/cool.png'),
+            scaledSize: {
+              height: 50,
+              width: 50
+            }
+          };
+          if (this.parkings[i].price === minPrice) {
+            this.icon[i] = {
+              url: require( '../../../../assets/img/bubble.png'),
+              scaledSize: {
+                height: 50,
+                width: 50
+              }
+            } 
+          };
+
           this.labelOptions[i] = {
-            color: '#CC0000',
-            fontFamily: '',
-            fontSize: '44px',
-            fontWeight: 'bold',
+            color: '#FFFFFF',
+            // fontFamily: '',
+            fontSize: '14px',
+            // fontWeight: 'bold',
             text : parkings[i].price + ' €'
           };
         }
