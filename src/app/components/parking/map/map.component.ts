@@ -1,5 +1,10 @@
-// import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild } from '@angular/core';
-import {Component, OnChanges, OnInit} from '@angular/core';
+import { ElementRef, NgModule, NgZone, ViewChild } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
+
+import { Component, OnChanges, OnInit} from '@angular/core';
 import { ParkingsService } from '../../../shared/services/parkings.service';
 import { Parking } from '../../../shared/models/parking.model';
 import { AgmDirectionModule } from 'agm-direction';
@@ -22,9 +27,16 @@ export class MapComponent implements OnInit {
   infoWindowsArray: Array<any> = [];
   labelOptions: Array<Object> = [];
 
+  public searchControl: FormControl;
 
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
-  constructor( private parkingService: ParkingsService ) {
+  constructor( 
+    private parkingService: ParkingsService,
+
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone ) {
   }
   updatePosition() {
     this.lng = -3.697588;
@@ -35,6 +47,31 @@ export class MapComponent implements OnInit {
     this.location = {
       type: 'Point', coordinates: [this.lng, this.lat]
     };
+
+    //create search FormControl
+    this.searchControl = new FormControl();
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+        //get the place result
+        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+        //verify result
+        if (place.geometry === undefined || place.geometry === null) {
+          return;
+        }
+        //set latitude, longitude and zoom
+        this.lat = place.geometry.location.lat();
+        this.lng = place.geometry.location.lng();
+        this.lng = place.geometry.location.lng();
+        console.log(this.lat, this.lng)
+      });
+    });
+  });
+        
     this.parkingService.near(this.location)
       .subscribe((parkings) => {
         this.parkings = parkings;
@@ -50,13 +87,7 @@ export class MapComponent implements OnInit {
         }
       });
   }
-
-/*
-{
-
-  text: 'Some text'
-}
-*/
+  
 
   getDirection(i) {
     this.dir = {
