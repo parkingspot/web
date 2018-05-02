@@ -1,18 +1,15 @@
 <div>
-    <div class="input-group">
-      <button class="btn-light" disabled>
-        <i class="fa fa-search"></i>
-      </button>
-        <input 
-          placeholder="search for location" 
-          autocorrect="off" 
-          autocapitalize="off" 
-          spellcheck="off" 
-          type="text" 
-          class="form-control" 
-          #search [formControl]="searchControl"
+    <div class="row form-group is-blue">
+      <span class="btn-primary">
+        <i class="fa fa-search is-margin"></i>
+      </span>
+        <input type="text"
+               style="background-color: #0c78fd; color: white;"
+               class="form-control col-11 mb-3 ml-3"
+               placeholder="Search for location"
+               spellcheck="off"
+               #search [formControl]="searchControl"
         >
-      </div>
   <agm-map (mapClick)="closeInfoWindow()"
     [latitude]="lat"
     [longitude]="lng"

@@ -1,6 +1,6 @@
 import { ElementRef, NgModule, NgZone, ViewChild } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 
@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
   dir = undefined;
   lng = -3.697588;
   lat = 40.391662;
-  zoom = 14;
+  zoom = 16;
   parkings: Array<Parking> = [];
   travelMode: String = 'BICYCLING';
   avoidHighways: Boolean = true;
@@ -32,12 +32,10 @@ export class MapComponent implements OnInit {
 
   public searchControl: FormControl;
 
-  @ViewChild("search")
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
-  constructor( 
-    private parkingService: ParkingsService,
-
+  constructor ( private parkingService: ParkingsService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone ) {
   }
@@ -51,55 +49,52 @@ export class MapComponent implements OnInit {
       type: 'Point', coordinates: [this.lng, this.lat]
     };
 
-    //create search FormControl
+    // create search FormControl
     this.searchControl = new FormControl();
 
-    //load Places Autocomplete
+    // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ['address']
       });
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
-        //get the place result
+        // get the place result
         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-        //verify result
+        // verify result
         if (place.geometry === undefined || place.geometry === null) {
           return;
         }
-        //set latitude, longitude and zoom
+        // set latitude, longitude and zoom
         this.lat = place.geometry.location.lat();
         this.lng = place.geometry.location.lng();
         this.lng = place.geometry.location.lng();
-        console.log(this.lat, this.lng)
       });
     });
   });
-        
     this.parkingService.near(this.location)
       .subscribe((parkings) => {
         this.parkings = parkings;
-        //Sort
-        this.parkings.sort((a,b) => parseFloat(a.price) - parseFloat(b.price));
+        // Sort
+        this.parkings.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         let minPrice = this.parkings[0].price;
         for (let i = 0; i < this.parkings.length; i++) {
           this.icon[i] = {
-            url: require( '../../../../assets/img/cool.png'),
+            url: require( '../../../../assets/img/cool4.png'),
             scaledSize: {
-              height: 50,
-              width: 50
+              height: 60,
+              width: 60
             }
           };
           if (this.parkings[i].price === minPrice) {
             this.icon[i] = {
               url: require( '../../../../assets/img/bubble.png'),
               scaledSize: {
-                height: 50,
-                width: 50
+                height: 60,
+                width: 60
               }
-            } 
-          };
-
+            };
+          }
           this.labelOptions[i] = {
             color: '#FFFFFF',
             // fontFamily: '',
@@ -110,8 +105,6 @@ export class MapComponent implements OnInit {
         }
       });
   }
-  
-
   getDirection(i) {
     this.dir = {
       origin: {
