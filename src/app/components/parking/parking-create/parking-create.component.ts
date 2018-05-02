@@ -21,7 +21,6 @@ export class ParkingCreateComponent implements OnInit {
   // Descomentado
   latitude: number;
   longitude: number;
-  
   location: Array<number>;
   searchControl: FormControl;
   zoom: number;

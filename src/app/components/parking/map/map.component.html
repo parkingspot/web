@@ -25,7 +25,7 @@
 
     <agm-marker [latitude]="lat"
                 [longitude]="lng"
-                [iconUrl]="'./assets/img/pin.png'">
+                [iconUrl]="here">
     </agm-marker>
 
     <agm-marker (markerClick)="pushInfoWindow(infowindow)"
@@ -41,6 +41,7 @@
                      [destination]="dir.destination"
                      [travelMode]="travelMode"
                      [avoidHighways]="avoidHighways"
+                     [renderOptions]="renderOpts"
       >
       </agm-direction>
       <agm-info-window

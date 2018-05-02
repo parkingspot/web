@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings">
+  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings; let i = index">
     <div class="card col-xs-12 col-sm-6 mt-3">
         <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
         <div class="mt-3">
@@ -45,7 +45,8 @@
                     spellcheck="off"
                     type="text"
                     class="form-control"
-                    #search [formControl]="searchControl">
+                    #search
+                    [formControl]="searchControl[i]">
                 </li>
             </div>
               <!-- Fin Añadido buscador -->

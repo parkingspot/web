@@ -5,7 +5,6 @@ import { SessionService } from './../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-//Añadido
 import { FormControl } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ElementRef, ViewChild, NgZone } from '@angular/core';
@@ -24,7 +23,7 @@ export class ParkingListComponent implements OnInit {
   newParking: any;
 
   // Añadido
-  searchControl: FormControl;
+  searchControl: Array<FormControl> = [];
   location: Array<number> = [];
   address: String;
 
@@ -34,9 +33,9 @@ export class ParkingListComponent implements OnInit {
   constructor(
     private parkingService: ParkingsService,
     private sessionService: SessionService,
-    private router: Router
+    private router: Router,
     // Añadido
-    ,private mapsAPILoader: MapsAPILoader,
+    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) { }
 
@@ -45,7 +44,13 @@ export class ParkingListComponent implements OnInit {
       this.router.navigate(['/login']);
     } else if (this.sessionService.getUser().role === 'company') {
       this.parkingService.listByUser()
-        .subscribe((parkings) => this.parkings = parkings);
+        .subscribe((parkings) => {
+          this.parkings = parkings;
+          console.log(this.parkings)
+          for ( let i = 0; i < this.parkings.length; i++ ) {
+            this.searchControl[i] = new FormControl();
+          }
+        });
     } else if (this.sessionService.getUser().role === 'admin' ) {
       this.parkingService.list()
         .subscribe((parkings) => this.parkings = parkings);
@@ -53,8 +58,11 @@ export class ParkingListComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    // create search FormControl
-    this.searchControl = new FormControl();
+
+
+
+      // this.searchControl = new FormControl();
+
 
         // load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
@@ -77,6 +85,17 @@ export class ParkingListComponent implements OnInit {
             });
           });
         });
+
+
+        /*
+        setTimeout(() => {
+          console.log(this.parkings);
+          for ( let i = 0; i < this.parkings.length; i++ ) {
+            this.searchControl[i] = new FormControl();
+          }
+        }, 5000);
+        */
+
 
   }
 
