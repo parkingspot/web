@@ -15,28 +15,22 @@ import { ElementRef, ViewChild, NgZone } from '@angular/core';
   styleUrls: ['./parking-list.component.css']
 })
 export class ParkingListComponent implements OnInit {
-
-  parkings: Array<Parking> = [];
-  parking: any;
-  apiError: string;
-  isAddressDisabled: Boolean = false;
-  newParking: any;
-
-  // Añadido
+  // PRINCIPIO BORRAR
   searchControl: Array<FormControl> = [];
   location: Array<number> = [];
   address: String;
+  isAddressDisabled: Boolean = false;
+  // FIN BORRAR
 
-  @ViewChild('search')
-  public searchElementRef: ElementRef;
+  parkings: Array<Parking> = [];
+  parking: any;
+
+
 
   constructor(
     private parkingService: ParkingsService,
     private sessionService: SessionService,
-    private router: Router,
-    // Añadido
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,7 +40,6 @@ export class ParkingListComponent implements OnInit {
       this.parkingService.listByUser()
         .subscribe((parkings) => {
           this.parkings = parkings;
-          console.log(this.parkings)
           for ( let i = 0; i < this.parkings.length; i++ ) {
             this.searchControl[i] = new FormControl();
           }
@@ -57,100 +50,6 @@ export class ParkingListComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
-
-
-
-
-      // this.searchControl = new FormControl();
-
-
-        // load Places Autocomplete
-        this.mapsAPILoader.load().then(() => {
-          const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-            types: ['address']
-          });
-          autocomplete.addListener('place_changed', () => {
-            this.ngZone.run(() => {
-              // get the place result
-              const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-              // verify result
-              if (place.geometry === undefined || place.geometry === null) {
-                return;
-              }
-              // set latitude, longitude and zoom
-              console.log(place.geometry.location.lng());
-              this.location[0] = place.geometry.location.lng();
-              this.location[1] = place.geometry.location.lat();
-              this.address = place.formatted_address;
-            });
-          });
-        });
-
-
-        /*
-        setTimeout(() => {
-          console.log(this.parkings);
-          for ( let i = 0; i < this.parkings.length; i++ ) {
-            this.searchControl[i] = new FormControl();
-          }
-        }, 5000);
-        */
-
-
-  }
-
-  onSubmitEdit(editForm) {
-    let pos;
-    pos = this.findWithAttr(this.parkings, 'id', editForm.id);
-    if (this.location[0] === undefined
-      || this.location[1] === undefined
-      || this.address === undefined ) {
-        this.newParking = {
-          ...this.parkings[pos],
-          location: {
-            type: 'Point',
-            coordinates: [editForm.longitude, editForm.latitude]
-          }
-        };
-      } else {
-        this.newParking = {
-
-          ...this.parkings[pos],
-          location: {
-            type: 'Point',
-            coordinates: [this.location[0], this.location[1]]
-          }
-        };
-        this.newParking.address = this.address
-      }
-
-
-    this.parkingService.edit(this.newParking)
-      .subscribe(
-        (parking) => {
-          this.parkings[pos] = parking;
-          this.router.navigate(['/parkings/list']);
-        },
-        (error) => {
-          this.apiError = error;
-        }
-      );
-  }
-
-  onSubmitDelete(deleteForm) {
-    let pos;
-    pos = this.findWithAttr(this.parkings, 'id', deleteForm.id);
-    this.parkings.splice(pos, 1);
-
-    this.parkingService.delete(deleteForm.id)
-      .subscribe(
-        (parking) => {
-          this.router.navigate(['/parkings/list']);
-        },
-        (error) => {
-          this.apiError = error;
-        }
-      );
   }
 
   findWithAttr(array, attr, value) {
@@ -162,15 +61,10 @@ export class ParkingListComponent implements OnInit {
     return -1;
   }
 
-  toggleAddress() {
-    console.log('cambio estado')
-    console.log(this.isAddressDisabled)
-    this.isAddressDisabled = !this.isAddressDisabled;
+  removeParking(id) {
+    let removeIndex;
+    removeIndex  = this.parkings.map(function(item) { return item.id; })
+      .indexOf(id);
+    this.parkings.splice(removeIndex, 1);
   }
-
-  //Añadido
-  // toggleDisable() {
-  //   console.log("Hola")
-  //   this.disableTextbox = !this.disableTextbox;
-  // }
 }

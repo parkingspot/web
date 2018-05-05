@@ -31,6 +31,7 @@ import { ParkingListComponent } from './components/parking/parking-list/parking-
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserParkingsComponent } from './components/parking/user-parkings/user-parkings.component';
+import { ParkingItemComponent } from './components/parking/parking-item/parking-item.component';
 
 
 
@@ -47,7 +48,8 @@ import { UserParkingsComponent } from './components/parking/user-parkings/user-p
     ParkingListComponent,
     UserListComponent,
     UserProfileComponent,
-    UserParkingsComponent
+    UserParkingsComponent,
+    ParkingItemComponent
   ],
   imports: [
     NgbModule.forRoot(),
