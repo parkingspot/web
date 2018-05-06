@@ -4,7 +4,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from './../../../shared/models/user.model';
 import { Observable, Subscription } from 'rxjs/Rx';
 
-
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -13,6 +12,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 export class NavComponent implements OnInit {
   user: User;
   userSubscription: Subscription;
+  isCollapse: Boolean;
 
   constructor(
     private router: Router,
@@ -36,4 +36,12 @@ export class NavComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   ); }
+
+  onclickClose() {
+    this.isCollapse = false;
+  }
+
+  onclickToggle() {
+    this.isCollapse = !this.isCollapse;
+  }
 }

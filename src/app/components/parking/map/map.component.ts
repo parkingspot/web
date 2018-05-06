@@ -8,6 +8,7 @@ import { Component, OnChanges, OnInit} from '@angular/core';
 import { ParkingsService } from '../../../shared/services/parkings.service';
 import { Parking } from '../../../shared/models/parking.model';
 import { AgmDirectionModule } from 'agm-direction';
+import {Router} from '@angular/router';
 
 declare function require (path: string);
 
@@ -25,14 +26,15 @@ export class MapComponent implements OnInit {
   parkings: Array<Parking> = [];
   travelMode: String = 'BICYCLING';
   avoidHighways: Boolean = true;
-  radius: Number = 600; 
-  radiusBigger : Number = 1000;
-  zIndex: number = 500;
+  radius: Number = 600;
+  radiusBigger: Number = 1000;
+  zIndex: Number = 500;
   fillColor: String = 'rgba(12,101,255,0.30)';
   fillColorBigger: String = 'rgba(191,89,63,0.30)';
   infoWindowsArray: Array<any> = [];
   labelOptions: Array<Object> = [];
   icon: Array<Object> = [];
+  isNoVisible: Boolean = true;
   renderOpts = {
     suppressMarkers: true,
   };
@@ -51,7 +53,8 @@ export class MapComponent implements OnInit {
 
   constructor ( private parkingService: ParkingsService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone ) {
+    private ngZone: NgZone,
+    private router: Router) {
   }
   /*
   updatePosition() {
@@ -125,6 +128,7 @@ export class MapComponent implements OnInit {
       });
   }
   getDirection(i) {
+    this.isNoVisible = false;
     this.dir = {
       origin: {
         lng: this.lng,
@@ -137,6 +141,11 @@ export class MapComponent implements OnInit {
     };
   }
 
+  resetMap(lat, lng) {
+    console.log('LATITUD: ' + lat + 'LONGITUD: ' + lng);
+    window.location.reload();
+  }
+
   pushInfoWindow(e) {
     for (let i = 0; i < this.infoWindowsArray.length; i++) {
       this.infoWindowsArray[i].close();
@@ -147,5 +156,9 @@ export class MapComponent implements OnInit {
     for (let i = 0; i < this.infoWindowsArray.length; i++) {
       this.infoWindowsArray[i].close();
     }
+  }
+  closeMap() {
+    console.log('close map');
+
   }
 }

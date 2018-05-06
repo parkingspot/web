@@ -37,7 +37,6 @@ export class ParkingItemComponent implements OnInit {
   ngOnInit() {
     // create search FormControl
     this.searchControl = new FormControl();
-    
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {

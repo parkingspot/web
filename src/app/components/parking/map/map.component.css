@@ -24,3 +24,7 @@ agm-map {
   /* margin-left: 27px; */
   /* margin-top: 12px; */
 }
+
+.fixed-bottom {
+  opacity: 0.6;
+}

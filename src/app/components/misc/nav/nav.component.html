@@ -1,26 +1,29 @@
 
     <div class="pos-f-t">
-        <div class="collapse" id="navbarToggleExternalContent">
+        <div class="collapse" [class.show]="isCollapse" id="navbarToggleExternalContent" (click)="onclickClose()">
           <div class="bg-primary p-4">
-            <div class="dropdown navbar-left" *ngIf="user">
-                <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings']"><i class="fas fa-map"></i><strong>&nbsp;&nbsp;Map</strong></a>
+            <div class="dropdown d-block" *ngIf="user">
                 <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings/create']" *ngIf="user.role === 'admin' || user.role === 'company'"><i class="fas fa-plus-square"></i><strong>&nbsp;&nbsp;&nbsp;Create Parking</strong></a>
                 <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings/list']" *ngIf="user.role === 'admin' || user.role === 'company'"><i class="fas fa-car"></i><strong>&nbsp;&nbsp;&nbsp;List Parking</strong></a>
                 <a class="text-light d-block mt-2 ml-2" [routerLink]="['/user']"><i class="fas fa-users"></i><strong>&nbsp;&nbsp; Profile</strong></a>
                 <a class="text-light d-block mt-2 ml-2" [routerLink]="['/user/list']" *ngIf="user.role === 'admin'"><i class="fas fa-users"></i><strong>&nbsp;&nbsp; Users List</strong></a>
             </div>
+
+            <div class="dropdown d-block">
+              <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings']"><i class="fas fa-map"></i><strong>&nbsp;&nbsp;Map</strong></a>
+            </div>
           </div>
         </div>
         <nav class="navbar navbar-dark bg-primary">
-          <button class="navbar-toggler mt-1 ml-4 mb-2" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler mt-1 ml-4 mb-2" type="button" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" (click)="onclickToggle()">
             <span class="navbar-toggler-icon"></span>
             <span class="navbar-brand">&nbsp;&nbsp;&nbsp;Parking<strong>Spot</strong></span>
           </button>
-            <ul class="nav navbar-nav text-light d-inline" *ngIf="!user">
+            <ul class="nav navbar-nav text-light d-inline" *ngIf="!user" (click)="onclickClose()">
               <li class="d-inline mr-4"><a [routerLink]="['/signup']" class="btn.btn-default btn-lg text-light navbuttons"><i class="fas fa-user-plus"></i> Sign Up</a></li>
               <li class="d-inline mr-4"><a [routerLink]="['/login']" class="btn.btn-default btn-lg text-light navbuttons"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
-            <ul *ngIf="user" class="text-light d-inline">
+            <ul *ngIf="user" class="text-light d-inline" (click)="onclickClose()">
               <li class="mr-4 d-inline"><a (click)="onclickLogout()" class="btn.btn-default btn-lg logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </nav>

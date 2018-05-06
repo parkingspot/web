@@ -1,5 +1,4 @@
-<div>
-    <div class="row form-group is-blue">
+<div class="row form-group is-blue" (click)="closeMap()">
       <span class="btn-primary">
         <i class="fa fa-search ml-4 mt-2"></i>
       </span>
@@ -10,6 +9,9 @@
                spellcheck="off"
                #search [formControl]="searchControl"
         >
+
+  <button class="fixed-bottom btn btn-secondary mb-5 ml-5" [class.d-none]="isNoVisible" (click)="resetMap(lat, lng)">Go Back</button>
+
   <agm-map (mapClick)="closeInfoWindow()"
     [latitude]="lat"
     [longitude]="lng"
@@ -76,7 +78,7 @@
         </div>
       </agm-info-window>
     </agm-marker>
-
   </agm-map>
 
 </div>
+
