@@ -48,14 +48,12 @@ export class ParkingCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.parking.price = "P";
     this.labelOption  = {
-      color: "#ffffff",
-      fontSize: "20px",
-      fontWeight: "bold",
-      text:  this.parking.price
-    }
+      color: '#ffffff',
+      fontSize: '20px',
+      fontWeight: 'bold',
+      text: 'P'
+    };
     // set google maps defaults
     this.zoom = 18;
     this.location = [-3.718196, 40.412972];
@@ -121,7 +119,6 @@ export class ParkingCreateComponent implements OnInit {
   }
 
   markerDragEnd($event) {
-    console.log('dragEnd', $event.coords);
     this.location[0] = $event.coords.lng;
     this.location[1] = $event.coords.lat;
   }

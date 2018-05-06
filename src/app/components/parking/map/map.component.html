@@ -1,6 +1,6 @@
 <div class="row form-group is-blue">
       <span class="btn-primary">
-        <i class="fa fa-search ml-4 mt-2"></i>
+        <i class="fa fa-search ml-4 mt-2 hid"></i>
       </span>
         <input type="text"
                style="background-color: #0c78fd; color: white;"
@@ -21,16 +21,7 @@
                 [latitude]="lat"
                 [longitude]="lng"
                 [radius]="radius"
-                [zIndex]="zIndex"
                 [fillColor]="fillColor">
-    </agm-circle>
-
-    <!-- Nuevo circle -->
-    <agm-circle (circleClick)="closeInfoWindow()"
-                [latitude]="lat"
-                [longitude]="lng"
-                [radius]="radiusBigger"
-                [fillColor]="fillColorBigger">
     </agm-circle>
 
 

@@ -29,11 +29,16 @@
 
 .dropdown-content a:hover {background-color: #ddd}
 
-.dropdown:hover .dropdown-content {
-    /* display: block; */
+@media (max-width: 600px) {
+  .hid {
+    display: none;
+    margin-top: -100px;
+  }
+  .mright {
+    margin-right: 1px !important;
+  }
 }
 
-/* .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-} */
-
+.logout {
+  cursor: pointer;
+}

@@ -26,11 +26,8 @@ export class MapComponent implements OnInit {
   parkings: Array<Parking> = [];
   travelMode: String = 'BICYCLING';
   avoidHighways: Boolean = true;
-  radius: Number = 600;
-  radiusBigger: Number = 1000;
-  zIndex: Number = 500;
-  fillColor: String = 'rgba(12,101,255,0.30)';
-  fillColorBigger: String = 'rgba(191,89,63,0.30)';
+  radius: Number = 800;
+  fillColor: String = 'rgba(12,101,255,0.25)';
   infoWindowsArray: Array<any> = [];
   labelOptions: Array<Object> = [];
   icon: Array<Object> = [];
@@ -56,12 +53,6 @@ export class MapComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router) {
   }
-  /*
-  updatePosition() {
-    this.lng = -3.718196;
-    this.lat = 40.412972;
-  }
-  */
 
   ngOnInit() {
     this.location = {

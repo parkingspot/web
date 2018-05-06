@@ -20,11 +20,11 @@
             <span class="navbar-brand">&nbsp;&nbsp;&nbsp;Parking<strong>Spot</strong></span>
           </button>
             <ul class="nav navbar-nav text-light d-inline" *ngIf="!user" (click)="onclickClose()">
-              <li class="d-inline mr-4"><a [routerLink]="['/signup']" class="btn.btn-default btn-lg text-light navbuttons"><i class="fas fa-user-plus"></i> Sign Up</a></li>
-              <li class="d-inline mr-4"><a [routerLink]="['/login']" class="btn.btn-default btn-lg text-light navbuttons"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li class="d-inline mr-4"><a [routerLink]="['/signup']" class="btn.btn-default btn-lg text-light navbuttons"><i class="fas fa-user-plus"></i><span class="hid">Sign Up</span></a></li>
+              <li class="d-inline mr-4 mright"><a [routerLink]="['/login']" class="btn.btn-default btn-lg text-light navbuttons"><i class="fas fa-sign-in-alt"></i><span class="hid">Login</span></a></li>
             </ul>
             <ul *ngIf="user" class="text-light d-inline" (click)="onclickClose()">
-              <li class="mr-4 d-inline"><a (click)="onclickLogout()" class="btn.btn-default btn-lg logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              <li class="mr-4 d-inline"><a (click)="onclickLogout()" class="btn.btn-default btn-lg logout"><i class="fas fa-sign-out-alt"></i><span class="hid">Logout</span></a></li>
             </ul>
         </nav>
       </div>
