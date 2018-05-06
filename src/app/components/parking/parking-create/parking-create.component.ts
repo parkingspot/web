@@ -9,6 +9,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 
+declare function require (path: string);
+
 @Component({
   selector: 'app-parking-create',
   templateUrl: './parking-create.component.html',
@@ -19,12 +21,20 @@ export class ParkingCreateComponent implements OnInit {
   parking: Parking = new Parking();
   apiError: string;
   // Descomentado
-  latitude: number;
-  longitude: number;
+  lat: number;
+  lng: number;
   location: Array<number>;
   searchControl: FormControl;
   zoom: number;
   address: string;
+  labelOption: Object;
+  here: Object = {
+    url: require( '../../../../assets/img/cool4.png'),
+    scaledSize: {
+      height: 80,
+      width: 80
+    }
+  };
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -38,15 +48,23 @@ export class ParkingCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.parking.price = "P";
+    this.labelOption  = {
+      color: "#ffffff",
+      fontSize: "20px",
+      fontWeight: "bold",
+      text:  this.parking.price
+    }
     // set google maps defaults
     this.zoom = 18;
-    this.location = [-3.69743, 40.392303];
+    this.location = [-3.718196, 40.412972];
 
     // create search FormControl
     this.searchControl = new FormControl();
 
     // set current position
-    setTimeout(() => this.setCurrentPosition(), 3000);
+    // setTimeout(() => this.setCurrentPosition(), 3000);
     // this.setCurrentPosition();
 
     // load Places Autocomplete
@@ -57,7 +75,7 @@ export class ParkingCreateComponent implements OnInit {
 
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
-          // get the place result
+          // get tdeclare function require (path: string);he place result
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           // verify result
@@ -73,16 +91,16 @@ export class ParkingCreateComponent implements OnInit {
     });
   }
 
-  private setCurrentPosition() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-          this.location[0] = position.coords.longitude;
-          this.location[1] = position.coords.latitude;
-          this.zoom = 18;
-        }
-      );
-    }
-  }
+  // private setCurrentPosition() {
+  //   if ('geolocation' in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //         this.location[0] = position.coords.longitude;
+  //     // setTimeout(() => this.setCurrentPosition(), 3000);        this.location[1] = position.coords.latitude;
+  //         this.zoom = 18;
+  //       }
+  //     );
+  //   }
+  // }
 
   onSubmitParking(/*parkingForm: NgForm*/) {
   const newParking = {
@@ -100,5 +118,11 @@ export class ParkingCreateComponent implements OnInit {
           this.apiError = error;
         }
       );
+  }
+
+  markerDragEnd($event) {
+    console.log('dragEnd', $event.coords);
+    this.location[0] = $event.coords.lng;
+    this.location[1] = $event.coords.lat;
   }
 }

@@ -9,8 +9,12 @@
     [scrollwheel]="false"
     [zoom]="zoom">
     <agm-marker
-      [latitude]="latitude"
-      [longitude]="longitude">
+      [latitude]="location[1]"
+      [longitude]="location[0]"
+      [iconUrl]="here"
+      [label]="labelOption"
+      [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)">
     </agm-marker>
   </agm-map>
 
