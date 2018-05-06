@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class ParkingItemComponent implements OnInit {
   // parking: any;
   // Añadido
-  searchControl: Array<FormControl> = [];
+  searchControl: FormControl;
   location: Array<number> = [];
   address: String;
   isAddressDisabled: Boolean = false;
@@ -35,6 +35,9 @@ export class ParkingItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // create search FormControl
+    this.searchControl = new FormControl();
+    
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {

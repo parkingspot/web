@@ -19,7 +19,16 @@
                 [latitude]="lat"
                 [longitude]="lng"
                 [radius]="radius"
+                [zIndex]="zIndex"
                 [fillColor]="fillColor">
+    </agm-circle>
+
+    <!-- Nuevo circle -->
+    <agm-circle (circleClick)="closeInfoWindow()"
+                [latitude]="lat"
+                [longitude]="lng"
+                [radius]="radiusBigger"
+                [fillColor]="fillColorBigger">
     </agm-circle>
 
 
