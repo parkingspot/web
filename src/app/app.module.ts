@@ -32,6 +32,8 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserParkingsComponent } from './components/parking/user-parkings/user-parkings.component';
 import { ParkingItemComponent } from './components/parking/parking-item/parking-item.component';
+import { FilterbycityPipe } from './shared/pipes/filterbycity.pipe';
+import { FilterbyUsernamePipe } from './shared/pipes/filterby-username.pipe';
 
 
 
@@ -49,7 +51,9 @@ import { ParkingItemComponent } from './components/parking/parking-item/parking-
     UserListComponent,
     UserProfileComponent,
     UserParkingsComponent,
-    ParkingItemComponent
+    ParkingItemComponent,
+    FilterbycityPipe,
+    FilterbyUsernamePipe
   ],
   imports: [
     NgbModule.forRoot(),

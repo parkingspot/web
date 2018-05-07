@@ -1,14 +1,15 @@
+import { FilterbyUsernamePipe } from './../../../shared/pipes/filterby-username.pipe';
+import { FilterbycityPipe } from './../../../shared/pipes/filterbycity.pipe';
 import { User } from './../../../shared/models/user.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
 import { UsersService } from '../../../shared/services/users.service';
 import { SessionService } from './../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
 

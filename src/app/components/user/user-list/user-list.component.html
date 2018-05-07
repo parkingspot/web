@@ -4,8 +4,12 @@
     <h1>Users List</h1>
   </div>
 
+    <h6>Filter by: </h6>
+    <input type="text" [(ngModel)]="cityTerm" placeholder=" City">
+    <input type="text" [(ngModel)]="nameTerm" placeholder=" Name">
 
-  <div class="row align-items-center justify-content-center mt-4" *ngFor="let user of users">
+
+  <div class="row align-items-center justify-content-center mt-4" *ngFor="let user of users | filterbycity:cityTerm | filterbyUsername:nameTerm">
     <!-- <div class="panel-group form-group"> -->
       <div class="card col-6">
 

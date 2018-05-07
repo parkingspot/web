@@ -5,8 +5,7 @@
     </div>
   </div>
 
-  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings; let i = index">
+  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings">
     <app-parking-item class="card col-xs-12 col-sm-6 mt-3" [parking]="parking" (onDelete)="removeParking($event)"></app-parking-item>
   </div>
 </div>
-
