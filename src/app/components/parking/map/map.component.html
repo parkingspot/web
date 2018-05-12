@@ -46,23 +46,28 @@
                      [renderOptions]="renderOpts"
       >
       </agm-direction>
-      <agm-info-window
+      <agm-info-window class="ml-5"
         #infowindow
       >
-        <div class="display-4">
+
+        <div class="info-size">
           <p class="info-title">{{parking.name}}</p>
           <table class="table info-address">
             <tr>
               <td><i class="fas fa-building"></i></td>
-              <td><span class="mt-3 ml-3">{{parking.address }} </span></td>
+              <td><span class="mt-3">{{parking.address }} </span></td>
             </tr>
             <tr>
               <td><i class="fas fa-car"></i></td>
-              <td><span class="mt-3 ml-3">{{ parking.availableParkingSpots }} available spots</span></td>
+              <td><span class="mt-3">{{ parking.totalParkingSpots }} parking spots</span></td>
             </tr>
             <tr>
               <td><i class="fas fa-euro-sign"></i></td>
-              <td><span class="mt-3 ml-3">{{ parking.price}} per hour&nbsp;&nbsp;</span></td>
+              <td><span class="mt-3">{{ parking.price}} per hour&nbsp;&nbsp;</span></td>
+            </tr>
+            <tr>
+              <td><i class="far fa-clock"></i></td>
+              <td><span class="mt-3">{{ parking.schedule}}</span></td>
             </tr>
           </table>
           <button class="btn btn-primary" (click)="getDirection(i)">GO TO</button>

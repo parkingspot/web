@@ -4,11 +4,11 @@ agm-map {
 }
 
 .info-title {
-  font-size: 40px;
+  font-size: 25px;
 }
 
 .info-address {
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .is-blue {
@@ -33,4 +33,12 @@ agm-map {
   .hid {
     display: none;
   }
+}
+
+.transparent {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.info-size {
+  width: 250px;
 }

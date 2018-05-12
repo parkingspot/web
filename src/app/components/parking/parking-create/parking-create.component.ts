@@ -28,6 +28,7 @@ export class ParkingCreateComponent implements OnInit {
   zoom: number;
   address: string;
   labelOption: Object;
+  isSelected: Boolean = true;
   here: Object = {
     url: require( '../../../../assets/img/cool4.png'),
     scaledSize: {
@@ -35,6 +36,10 @@ export class ParkingCreateComponent implements OnInit {
       width: 80
     }
   };
+  schedules = [
+    '24 Hours',
+    'Diurnal'
+  ];
 
   @ViewChild('search')
   public searchElementRef: ElementRef;

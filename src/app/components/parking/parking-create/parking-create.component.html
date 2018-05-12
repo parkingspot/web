@@ -73,14 +73,13 @@
 
     <div class="form-group">
       <label for="schedule">Schedule</label>
-      <input type="text"
-             class="form-control"
-             id="schedule"
-             name="schedule"
-             placeholder="Enter Schedule"
-             #schedule="ngModel"
-             [(ngModel)]="parking.schedule" required>
-      <span class="text-danger" *ngIf="schedule.touched && schedule.errors">Schedule not valid</span>
+      <select class="form-control"
+              id="schedule"
+              name="schedule"
+              #schedule="ngModel"
+              [(ngModel)]="parking.schedule">
+        <option *ngFor="let schedule of schedules" [ngValue]="schedule">{{ schedule }}</option>
+      </select>
     </div>
 
     <button class="btn" [disabled]="!parkingForm.valid">Create Parking</button>
