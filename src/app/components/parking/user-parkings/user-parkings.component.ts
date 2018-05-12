@@ -1,6 +1,6 @@
 import { ParkingsService } from './../../../shared/services/parkings.service';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
+import { CapitalizePipe } from './../../../shared/pipes/capitalize.pipe';
 import { AgmCoreModule } from '@agm/core';
 
 @Component({
