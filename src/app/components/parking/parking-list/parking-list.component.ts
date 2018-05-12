@@ -24,6 +24,9 @@ export class ParkingListComponent implements OnInit {
   isAddressDisabled: Boolean = false;
   // FIN BORRAR
 
+  parkingnameTerm : String;
+  parkingaddressTerm : String;
+
   parkings: Array<Parking> = [];
   parking: any;
 
