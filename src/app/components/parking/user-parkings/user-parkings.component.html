@@ -11,8 +11,8 @@
 
     <div class="row card-body  align-items-center justify-content-center">
       <div>
-      <h4 class="card-title"><strong>{{parking.name}}</strong></h4>
-      <p>{{parking.address}}</p>
+      <h4 class="card-title"><strong>{{parking.name | capitalize }}</strong></h4>
+      <p>{{parking.address | capitalize}}</p>
       <a [routerLink]="['/parkings/list']">Edit parking</a>
       </div>
     </div>

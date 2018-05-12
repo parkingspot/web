@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { User } from './../../../shared/models/user.model';
 import { SessionService } from './../../../shared/services/session.service';
 import { UsersService } from '../../../shared/services/users.service';
 import { Router } from '@angular/router';
-
+import { CapitalizePipe } from './../../../shared/pipes/capitalize.pipe';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Pipe, PipeTransform } from '@angular/core';
 import { Parking } from './../../../shared/models/parking.model';
 import { NgForm } from '@angular/forms';
 import { ParkingsService } from '../../../shared/services/parkings.service';
@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ElementRef, ViewChild, NgZone } from '@angular/core';
 import {Router} from '@angular/router';
+import { CapitalizePipe } from './../../../shared/pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-parking-item',

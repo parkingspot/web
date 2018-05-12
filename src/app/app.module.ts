@@ -32,6 +32,12 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserParkingsComponent } from './components/parking/user-parkings/user-parkings.component';
 import { ParkingItemComponent } from './components/parking/parking-item/parking-item.component';
+import { FilterbycityPipe } from './shared/pipes/filterbycity.pipe';
+import { FilterbyUsernamePipe } from './shared/pipes/filterby-username.pipe';
+import { FilterbyParkingnamePipe } from './shared/pipes/filterby-parkingname.pipe';
+import { FilterbyParkingaddressPipe } from './shared/pipes/filterby-parkingaddress.pipe';
+import { FilterbyUsermailPipe } from './shared/pipes/filterby-usermail.pipe';
+import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 
 
 
@@ -49,7 +55,13 @@ import { ParkingItemComponent } from './components/parking/parking-item/parking-
     UserListComponent,
     UserProfileComponent,
     UserParkingsComponent,
-    ParkingItemComponent
+    ParkingItemComponent,
+    FilterbycityPipe,
+    FilterbyUsernamePipe,
+    FilterbyParkingnamePipe,
+    FilterbyParkingaddressPipe,
+    FilterbyUsermailPipe,
+    CapitalizePipe
   ],
   imports: [
     NgbModule.forRoot(),

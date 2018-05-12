@@ -9,7 +9,7 @@
     <div class="card-body mt-2 form-group row">
         <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm)">
           <div class="card-title mb-4">
-            <h2><strong>{{user.name}}</strong> <i>from {{user.city}}</i></h2>
+            <h2><strong>{{user.name | capitalize}}</strong> <i>from {{user.city | capitalize}}</i></h2>
           </div>
 
           <div class="card-text col-12">

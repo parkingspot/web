@@ -5,8 +5,10 @@
     </div>
   </div>
 
-  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings; let i = index">
+      <input type="text" [(ngModel)]="parkingnameTerm" placeholder=" Filter by name">
+      <input type="text" [(ngModel)]="parkingaddressTerm" placeholder=" Filter by address">
+
+  <div class="row align-items-center justify-content-center" *ngFor="let parking of parkings | filterbyParkingname:parkingnameTerm | filterbyParkingaddress:parkingaddressTerm">
     <app-parking-item class="card col-xs-12 col-sm-6 mt-3" [parking]="parking" (onDelete)="removeParking($event)"></app-parking-item>
   </div>
 </div>
-

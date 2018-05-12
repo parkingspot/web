@@ -1,5 +1,6 @@
+import { FilterbyParkingnamePipe } from './../../../shared/pipes/filterby-parkingname.pipe';
 import { Parking } from './../../../shared/models/parking.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
 import { ParkingsService } from '../../../shared/services/parkings.service';
 import { SessionService } from './../../../shared/services/session.service';
 import { Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ElementRef, ViewChild, NgZone } from '@angular/core';
+
 
 @Component({
   selector: 'app-parking-list',
