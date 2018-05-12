@@ -20,6 +20,12 @@ export class UserListComponent implements OnInit {
   user: any;
   apiError: string;
 
+  cityTerm : String;
+  nameTerm : String;
+  emailTerm : String;
+
+
+
   constructor(
     private usersService: UsersService,
     private sessionService: SessionService,
