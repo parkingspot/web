@@ -1,106 +1,130 @@
+<form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
+  <div class="mt-3">
+    <div class="card-header text-left">
+      <h4>{{ parking.name | capitalize }}</h4>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item mt-4">
+      <h6 class="mt-2">{{ parking.address | capitalize}}</h6>
+    </li>
 
-  <form #editForm="ngForm" (ngSubmit)="onSubmitEdit(editForm.value)">
-    <div class="mt-3">
-      <div class="card-header text-left">
-        <h4>{{ parking.name | capitalize }}</h4>
+    <input
+      class="form-control"
+      type="hidden"
+      name="address"
+      #address="ngModel"
+      [value]="parking.address"
+      [(ngModel)]="parking.address"
+      required>
+
+    <div (click)="toggleAddress()">
+      <li class="list-group-item">
+        <input
+          [readonly]="!isAddressDisabled"
+          id="address"
+          placeholder="Enter new parking address"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="off"
+          type="text"
+          class="form-control"
+          #search
+          [formControl]="searchControl">
+      </li>
+    </div>
+
+    <br>
+
+    <div class="form-group row align-items-center justify-content-center">
+
+      <div class="col-3">
+        <label class="mt-2">Spots</label>
+      </div>
+
+      <div class="col-8">
+        <input
+          class="form-control"
+          type="text"
+          name="totalParkingSpots"
+          #totalParkingSpots="ngModel"
+          [value]="parking.totalParkingSpots"
+          [(ngModel)]="parking.totalParkingSpots"
+          required>
+      </div>
+
+    </div>
+
+    <div class="form-group row align-items-center justify-content-center">
+
+      <div class="col-3">
+        <label class="mt-2">Schedule</label>
+      </div>
+
+      <div class="col-8">
+        <input
+          type="text"
+          class="form-control"
+          name="schedule"
+          #schedule="ngModel"
+          [value]="parking.schedule"
+          [(ngModel)]="parking.schedule"
+          required>
       </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item mt-4">
-        <h6 class="mt-2">{{ parking.address | capitalize}}</h6>
-      </li>
 
-      <input
-        class="form-control"
-        type="hidden"
-        name="address"
-        #address="ngModel"
-        [value]="parking.address"
-        [(ngModel)]="parking.address"
-        required>
+    <div class="form-group row align-items-center justify-content-center">
 
-      <div (click)="toggleAddress()">
-        <li class="list-group-item">
-          <input
-            [readonly]="!isAddressDisabled"
-            id="address"
-            placeholder="Enter new parking address"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="off"
-            type="text"
-            class="form-control"
-            #search
-            [formControl]="searchControl">
-        </li>
+      <div class="col-3">
+        <label class="mt-2">Price</label>
       </div>
 
-      <div class="form-row ml-5 mt-3">
-
-        <div class="form-group">
-          <label class="mt-2 ml-3">Spots</label>
-
-          <div class="col-8">
-            <input
-              class="form-control"
-              type="text"
-              name="totalParkingSpots"
-              #totalParkingSpots="ngModel"
-              [value]="parking.totalParkingSpots"
-              [(ngModel)]="parking.totalParkingSpots"
-              required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="mt-2 ml-3">Schedule</label>
-          <div class="col-8">
-            <input
-              type="text"
-              class="form-control"
-              name="schedule"
-              #schedule="ngModel"
-              [value]="parking.schedule"
-              [(ngModel)]="parking.schedule"
-              required>
-          </div>
-        </div>
-
+      <div class="col-8">
+        <input
+          type="text"
+          class="form-control"
+          name="price"
+          #price="ngModel"
+          [value]="parking.price"
+          [(ngModel)]="parking.price"
+          required>
       </div>
-      <input name="id"
-             type="hidden"
-             #id="ngModel"
-             [value]="parking.id"
-             [(ngModel)]="parking.id">
+    </div>
 
-      <input
-        class="form-control"
-        type="hidden"
-        name="longitude"
-        #parking.longitude="ngModel"
-        [value]="parking.location[0]"
-        [(ngModel)]="parking.location[0]"
-        required>
+    <input name="id"
+           type="hidden"
+           #id="ngModel"
+           [value]="parking.id"
+           [(ngModel)]="parking.id">
 
-      <input
-        type="hidden"
-        class="form-control"
-        name="latitude"
-        #parking.latitude="ngModel"
-        [value]="parking.location[1]"
-        [(ngModel)]="parking.location[1]"
-        required>
-    </ul>
-
-    <button class="btn btn-success btn-sm mt-3 ml-2">Save</button>
-  </form>
-
-  <form class="negative" #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
     <input
-      name="id"
+      class="form-control"
       type="hidden"
-      #id="ngModel"
-      [value]="parking.id"
-      [(ngModel)]="parking.id">
-    <button class="btn btn-danger btn-sm mt-2 mb-4 ml-2">Delete</button>
-  </form>
+      name="longitude"
+      #parking.longitude="ngModel"
+      [value]="parking.location[0]"
+      [(ngModel)]="parking.location[0]"
+      required>
+
+    <input
+      type="hidden"
+      class="form-control"
+      name="latitude"
+      #parking.latitude="ngModel"
+      [value]="parking.location[1]"
+      [(ngModel)]="parking.location[1]"
+      required>
+  </ul>
+
+  <button class="btn btn-success btn-sm mt-3 ml-2">Save</button>
+</form>
+
+<form class="negative" #deleteForm="ngForm" (ngSubmit)="onSubmitDelete(deleteForm.value)">
+  <input
+    name="id"
+    type="hidden"
+    #id="ngModel"
+    [value]="parking.id"
+    [(ngModel)]="parking.id">
+  <button class="btn btn-danger btn-sm mt-2 mb-4 ml-2">Delete</button>
+</form>

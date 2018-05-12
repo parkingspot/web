@@ -23,6 +23,10 @@ export class ParkingItemComponent implements OnInit {
   isAddressDisabled: Boolean = false;
   apiError: string;
   newParking: any;
+  schedules: [
+    '24 Hours',
+    'Diurnal'
+  ];
   @Input() parking: any;
   @Output() onDelete = new EventEmitter<string>();
   @ViewChild('search')
