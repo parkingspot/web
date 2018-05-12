@@ -130,13 +130,12 @@ export class MapComponent implements OnInit {
         lat: this.parkings[i].location[1]
       }
     };
+    this.closeInfoWindow();
   }
 
   resetMap(lat, lng) {
-    console.log('LATITUD: ' + lat + 'LONGITUD: ' + lng);
     window.location.reload();
   }
-
   pushInfoWindow(e) {
     for (let i = 0; i < this.infoWindowsArray.length; i++) {
       this.infoWindowsArray[i].close();
@@ -147,9 +146,5 @@ export class MapComponent implements OnInit {
     for (let i = 0; i < this.infoWindowsArray.length; i++) {
       this.infoWindowsArray[i].close();
     }
-  }
-  closeMap() {
-    console.log('close map');
-
   }
 }
