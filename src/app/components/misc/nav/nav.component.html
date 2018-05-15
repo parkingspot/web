@@ -1,6 +1,6 @@
 
-    <div class="pos-f-t">
-        <div class="collapse" [class.show]="isCollapse" id="navbarToggleExternalContent" (click)="onclickClose()">
+    <div class="pos-f-t row">
+        <div class="collapse col-12" [class.show]="isCollapse" id="navbarToggleExternalContent" (click)="onclickClose()">
           <div class="bg-primary p-4">
             <div class="dropdown d-block" *ngIf="user">
                 <a class="text-light d-block mt-2 ml-2" [routerLink]="['/parkings/create']" *ngIf="user.role === 'admin' || user.role === 'company'"><i class="fas fa-plus-square"></i><strong>&nbsp;&nbsp;&nbsp;Create Parking</strong></a>
@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-dark bg-primary col-12">
           <button class="navbar-toggler mt-1 ml-4 mb-2" type="button" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" (click)="onclickToggle()">
             <span class="navbar-toggler-icon"></span>
             <span class="navbar-brand">&nbsp;&nbsp;&nbsp;Parking<strong>Spot</strong></span>

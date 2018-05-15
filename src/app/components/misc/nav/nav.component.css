@@ -42,3 +42,7 @@
 .logout {
   cursor: pointer;
 }
+
+.collapse {
+  background-color: #0C78FD;
+}
