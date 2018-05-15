@@ -79,45 +79,6 @@ export class MapComponent implements OnInit {
         this.lat = place.geometry.location.lat();
         this.lng = place.geometry.location.lng();
 
-          this.location = {
-            type: 'Point', coordinates: [this.lng, this.lat]
-          };
-          this.parkingService.near(this.location)
-            .subscribe((parkings) => {
-              this.parkings = parkings;
-              // Sort
-              if ( this.parkings.length > 0 ) {
-                this.parkings.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-                let minPrice;
-                minPrice = this.parkings[0].price;
-                for (let i = 0; i < this.parkings.length; i++) {
-                  if (this.parkings[i].price === minPrice) {
-                    this.icon[i] = {
-                      url: require( '../../../../assets/img/GOLD2.png'),
-                      scaledSize: {
-                        height: 60,
-                        width: 60
-                      }
-                    };
-                  } else {
-                    this.icon[i] = {
-                      url: require( '../../../../assets/img/cool4.png'),
-                      scaledSize: {
-                        height: 60,
-                        width: 60
-                      }
-                    };
-                  }
-                  this.labelOptions[i] = {
-                    color: '#FFFFFF',
-                    // fontFamily: '',
-                    fontSize: '14px',
-                    // fontWeight: 'bold',
-                    text : parkings[i].price + ' €'
-                  };
-                }
-              }
-            });
       });
     });
   });
