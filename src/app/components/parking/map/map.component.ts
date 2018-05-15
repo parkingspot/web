@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   dir = undefined;
   lng = -3.718196;
   lat = 40.412972;
-  zoom = 16;
+  zoom = 15;
   parkings: Array<Parking> = [];
   travelMode: String = 'BICYCLING';
   avoidHighways: Boolean = true;
